@@ -6,8 +6,5 @@ handlers:
 - url: /.*
   secure: always
   script: auto
-- url: /pages
-  secure: always
-  script: auto
 - url: /plugins
   static_dir: plugins

@@ -1,6 +1,8 @@
-runtime: php73
+runtime: php72
 
 
 handlers:
 - url: /
   script: auto
+- url: /dist
+  static_dir: dist

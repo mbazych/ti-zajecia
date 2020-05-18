@@ -3,7 +3,7 @@ runtime: php73
 
 handlers:
 - url: /
-  script: index.php
+  script: auto
 
 - url: /index\.html
   script: index.php

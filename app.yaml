@@ -5,6 +5,6 @@ handlers:
 - url: .*
   secure: always
   script: auto
-- url: /(.+\.php)$
+- url: /pages/(.+\.php)$
   script: pages/\1
 

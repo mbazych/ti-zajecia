@@ -1,8 +1,8 @@
 runtime: php73
 
 handlers:
-- url: /styles
-  static_dir: stylesheets
+- url: /dist
+  static_dir: dist
 - url: /.*
   secure: always
   script: auto

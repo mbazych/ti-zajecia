@@ -1,10 +1,8 @@
 runtime: php73
 
 handlers:
-- url: /dist
-  static_dir: dist
+
 - url: /.*
   secure: always
   script: auto
-- url: /plugins
-  static_dir: plugins
+

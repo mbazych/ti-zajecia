@@ -6,3 +6,6 @@ handlers:
 - url: /.*
   secure: always
   script: auto
+- url: /pages
+  secure: always
+  script: auto

@@ -6,5 +6,5 @@ handlers:
   secure: always
   script: auto
 - url: /pages/(.+\.php)$
-  script: pages/\1
+  script: auto
 

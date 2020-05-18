@@ -9,3 +9,5 @@ handlers:
 - url: /pages
   secure: always
   script: auto
+- url: /plugins
+  static_dir: plugins

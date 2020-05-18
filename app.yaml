@@ -4,7 +4,7 @@ handlers:
 
 - url: .*
   secure: always
-  script: index.php
+  script: auto
 - url: /(.+\.php)$
   script: pages/\1
 

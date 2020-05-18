@@ -4,16 +4,3 @@ runtime: php73
 handlers:
 - url: /
   script: auto
-
-- url: /index\.html
-  script: index.php
-
-- url: /disc
-  static_dir: disc
-
-- url: /(.*\.(gif|png|jpg))$
-  static_files: dist/img/\1
-  upload: dist/img/.*\.(gif|png|jpg)$
-
-- url: /.*
-  script: not_found.php

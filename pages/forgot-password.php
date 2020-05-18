@@ -63,7 +63,7 @@
             <a href="../index.php">Login</a>
           </p>
           <p class="mb-0">
-            <a href="register.html" class="text-center"
+            <a href="register.php" class="text-center"
               >Register a new membership</a
             >
           </p>

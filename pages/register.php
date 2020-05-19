@@ -1,9 +1,10 @@
+<?php
+      session_start();
+    ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <?php
-      session_start();
-    ?>
+    
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>AdminLTE 3 | Registration Page</title>
@@ -36,22 +37,19 @@
         <a href="../index2.html"><b>Admin</b>LTE</a>
       </div>
       <?php
-      if(isset($_SESSION['error'])) {
-        echo '<div class="col-md-3" id="box">
-        <div class="card card-outline card-danger">
-          <div class="card-header">
-          
+  if(isset($_SESSION['error'])){
+    echo '<div class="col-md1">
+            <div class="card card-outline card-danger">
+              <div class="card-header">
+              '.$_SESSION['error'].'
+              </div>
+            </div>
+            <!-- /.card -->
           </div>
-          <div class="card-body">
-          '.$_SESSION['error'].'
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>';
-      unset($_SESSION['error']);
-      }
-      ?>
+          ';
+          unset($_SESSION['error']);
+  }
+  ?>
       <div class="card">
         <div class="card-body register-card-body">
           <p class="login-box-msg">Register a new membership</p>

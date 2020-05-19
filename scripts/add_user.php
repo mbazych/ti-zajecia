@@ -37,7 +37,7 @@
 
         require_once './connect.php';
     }else{
-        $_SESSION['error'] = "Wypełnij wszystkie pola";
+        $_SESSION['error'] = "Wypełnij wszystkie pola!";
         ?>
             <script>
                 window.history.back();

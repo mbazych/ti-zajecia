@@ -1,8 +1,5 @@
 <?php  
-    $polacz = new mysqli('localhost','root','','cdv_ti');
-
-    if($polacz)
-     echo "polaczenie z baza";
-     else
-     echo "polaczenie z baza nie udane";
+    
+    $conn = new mysqli('localhost','root','cdv_ti','cdv_ti');
+    $conn->set_charset('utf8');
 ?>

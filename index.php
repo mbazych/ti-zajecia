@@ -21,16 +21,51 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="./index2.html"><b>bazych</b>.com</a>
+    <a href="#"><b>bazych</b>.com</a>
+    <?php
+      session_start();
+    ?>
+    <?php
+  if(isset($_SESSION['error'])){
+    echo '<div class="col-md1">
+            <div class="card card-outline card-danger">
+              <div class="card-header">
+              '.$_SESSION['error'].'
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          ';
+          unset($_SESSION['error']);
+  }
+  ?>
+
+
+    <?php 
+      if (isset($_GET['register']) && $_GET['register'] == 'success') {
+        echo <<<SUCCESS
+         
+            <div class="card card-outline card-success">
+              <div class="card-header">
+                <h3 class="card-title">User successfuly added. You can login now.</h3>
+                <!-- /.card-tools -->
+              </div>
+              
+            </div>
+          
+SUCCESS;
+      }
+    ?>
+
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="./index3.html" method="post">
+      <form action="./scripts/login.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -38,7 +73,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="pass">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -74,10 +109,10 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="/pages/forgot-password.php">I forgot my password</a>
+        <a href="./pages/forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="/pages/register.php" class="text-center">Register a new membership</a>
+        <a href="./pages/register.php" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.login-card-body -->

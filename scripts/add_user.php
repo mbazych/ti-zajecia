@@ -24,6 +24,7 @@
 >>>>>>> parent of 0ecd87e... revert
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if($_POST['email']!=$_POST['email2']){
             $_SESSION['error'] = "Emaile są rózne";
 =======
@@ -42,6 +43,9 @@
         
         }
 <<<<<<< HEAD
+=======
+
+>>>>>>> parent of 0ecd87e... revert
 
 <<<<<<< HEAD
         if($_POST['pass']!=$_POST['pass2']){
@@ -69,7 +73,15 @@
             </script>
             <?php
         }
-
+        if(!isset($_POST['terms'])){
+            $_SESSION['error'] = "Please agree to the terms";
+            ?>
+            <script>
+                window.history.back();
+            </script>
+            <?php
+        
+        }
         require_once './connect.php';
     }else{
         $_SESSION['error'] = "Wypełnij wszystkie pola!";

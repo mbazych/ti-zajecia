@@ -4,15 +4,7 @@
     session_start();
     if(!empty($_POST['name']) &&  !empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['email2']) && !empty($_POST['pass']) && !empty($_POST['pass2']) && !empty($_POST['birthday'])){
 
-        if(!isset($_POST['terms'])){
-            $_SESSION['error'] = "Please agree to the terms";
-            ?>
-            <script>
-                window.history.back();
-            </script>
-            <?
-        
-        }
+
 
         if($_POST['email']!=$_POST['email2']){
             $_SESSION['error'] = "Provided emails are different from each other";
@@ -31,7 +23,15 @@
             </script>
             <?php
         }
-
+        if(!isset($_POST['terms'])){
+            $_SESSION['error'] = "Please agree to the terms";
+            ?>
+            <script>
+                window.history.back();
+            </script>
+            <?php
+        
+        }
         require_once './connect.php';
 
         if($conn->connect_errno){

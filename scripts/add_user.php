@@ -1,13 +1,20 @@
 
-
- <?php
+<?
     session_start();
-    if(!empty($_POST['name']) &&  !empty($_POST['surname']) && !empty($_POST['email']) && !empty($_POST['email2']) && !empty($_POST['pass']) && !empty($_POST['pass2']) && !empty($_POST['birthday'])){
+    if(!empty($_POST['name']) &&  !empty($_POST['surname']) && !empty($_POST['email'])&& !empty($_POST['city'])&& !empty($_POST['nationality']) && !empty($_POST['email2']) && !empty($_POST['pass']) && !empty($_POST['pass2']) && !empty($_POST['birthday'])){
 
-
+        if(!isset($_POST['terms'])){
+            $_SESSION['error'] = "Zaznacz pole z regulaminem";
+            ?>
+            <script>
+                window.history.back();
+            </script>
+            <?
+        
+        }
 
         if($_POST['email']!=$_POST['email2']){
-            $_SESSION['error'] = "Provided emails are different from each other";
+            $_SESSION['error'] = "Emaile są rózne";
             ?>
             <script>
                 window.history.back();
@@ -16,26 +23,18 @@
         }
 
         if($_POST['pass']!=$_POST['pass2']){
-            $_SESSION['error'] = "Provided passwords are different";
+            $_SESSION['error'] = "Hasła są rózne";
             ?>
             <script>
                 window.history.back();
             </script>
-            <?php
+            <?
         }
-        if(!isset($_POST['terms'])){
-            $_SESSION['error'] = "Please agree to the terms";
-            ?>
-            <script>
-                window.history.back();
-            </script>
-            <?php
-        
-        }
+
         require_once './connect.php';
 
         if($conn->connect_errno){
-            $_SESSION['error']="Error connecting to the database";
+            $_SESSION['error']="Błędne połączenie z bazą danych";
             header("location: ../pages/register.php");
         }else{
             echo 'ok';
@@ -58,20 +57,20 @@
                 exit();
             }else{
 
-                $query = "SELECT * FROM `user` WHERE email=?";
-                $statement = $conn->prepare($query);
+                $zapytanie = "SELECT * FROM `user` WHERE email=?";
+                $statement = $conn->prepare($zapytanie);
                 $statement->bind_param('s',$email);
                 $statement->execute();
-                $input = $statement->get_result();
+                $wpisz = $statement->get_result();
                 $count=0;
-                while($record = $input->fetch_assoc()){
+                while($rekord = $wpisz->fetch_assoc()){
                     $count++;
                 }
                 if($count>0)
-                    $_SESSION['error']="Account with provided email already exists";
+                    $_SESSION['error']="Email juz istnieje w bazie";
                 else
-                    $_SESSION['error']= 'Something went wrong. Please contact support@bazych.com';
-                header("location: ../pages/register.php?asd='$pass'");
+                    $_SESSION['error']= 'Cos poszlo nie tak';
+                header("location: ../pages/register.php");
             }
         
         
@@ -79,11 +78,11 @@
 
 
     }else{
-        $_SESSION['error'] = "Some fields are empty";
+        $_SESSION['error'] = "Wypełnij wszystkie pola";
         ?>
             <script>
                 window.history.back();
             </script>
-        <?php
+        <?
     }
 ?>

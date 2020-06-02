@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  if(isset($_SESSION['logged']['permission'])){
+    header('location: ./scripts/login.php');
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,25 +29,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>bazych</b>.com</a>
-    <?php
-      session_start();
-    ?>
-    <?php
-  if(isset($_SESSION['error'])){
-    echo '<div class="col-md1">
-            <div class="card card-outline card-danger">
-              <div class="card-header">
-              '.$_SESSION['error'].'
-              </div>
-            </div>
-            <!-- /.card -->
-          </div>
-          ';
-          unset($_SESSION['error']);
-  }
-  ?>
-
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
 
     <?php 
       if (isset($_GET['register']) && $_GET['register'] == 'success') {
@@ -47,7 +37,7 @@
          
             <div class="card card-outline card-success">
               <div class="card-header">
-                <h3 class="card-title">User successfuly added. You can login now.</h3>
+                <h3 class="card-title">Prawidłowo dodano użytkownika</h3>
                 <!-- /.card-tools -->
               </div>
               
@@ -55,6 +45,15 @@
           
 SUCCESS;
       }
+if(isset($_SESSION['error'])){
+  echo '<div class="card card-outline card-danger">
+            <div class="card-header"">
+            <h3 class="card-title">'.$_SESSION['error'].'</h3>
+            </div>
+          </div>
+        ';
+        unset($_SESSION['error']);
+}
     ?>
 
   </div>
@@ -65,7 +64,7 @@ SUCCESS;
 
       <form action="./scripts/login.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          <input type="email" name=email class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -73,7 +72,7 @@ SUCCESS;
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="pass">
+          <input type="password" name="pass" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

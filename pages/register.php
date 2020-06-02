@@ -25,7 +25,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../index2.html"><b>bazych</b>.com</a>
+    <a href="../index2.html"><b>Admin</b>LTE</a>
   </div>
 
   <?php
@@ -69,10 +69,12 @@
             <option selected disabled>City</option>
             <?php
               require_once('../scripts/connect.php');
-              $query = "SELECT * FROM `city`";
-              $input= $conn->query($query);
-              while($record = $input->fetch_assoc()){
-                echo "<option value={$record['id']}>{$record['city']}</option>";
+              $zapytanie = "SELECT * FROM `city`";
+              $wpisz= $conn->query($zapytanie);
+              while($rekord = $wpisz->fetch_assoc()){
+                echo<<<CITY
+                <option value={$rekord['id']}>{$rekord['city']}</option>
+CITY;
               }
             ?>
           </select>
@@ -86,11 +88,10 @@
         <select type="text" class="form-control" name="nationality">
             <option selected disabled>Nationality</option>
             <?php
-              require_once('../scripts/connect.php');
-              $query = "SELECT * FROM `nationality`";
-              $input= $conn->query($query);
-              while($record = $input->fetch_assoc()){
-                echo "<option value={$record['id']}>{$record['nationality']}</option>";
+              $zapytanie = "SELECT * FROM `nationality`";
+              $wpisz= $conn->query($zapytanie);
+              while($rekord = $wpisz->fetch_assoc()){
+                echo "<option value={$rekord['id']}>{$rekord['nationality']}</option>";
               }
             ?>
           </select>

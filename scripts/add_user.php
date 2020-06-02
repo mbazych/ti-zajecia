@@ -4,6 +4,7 @@
     if(!empty($_POST['name']) &&  !empty($_POST['surname']) && !empty($_POST['email'])&& !empty($_POST['city'])&& !empty($_POST['nationality']) && !empty($_POST['email2']) && !empty($_POST['pass']) && !empty($_POST['pass2']) && !empty($_POST['birthday'])){
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(!isset($_POST['terms'])){
             $_SESSION['error'] = "Zaznacz pole z regulaminem";
             ?>
@@ -19,6 +20,25 @@
 
         if($_POST['email']!=$_POST['email2']){
             $_SESSION['error'] = "Emaile są rózne";
+=======
+        if(!isset($_POST['terms'])){
+            $_SESSION['error'] = "Please agree to the terms";
+>>>>>>> parent of 89ad1d4... test
+            ?>
+            <script>
+                window.history.back();
+            </script>
+            <?
+        
+        }
+
+<<<<<<< HEAD
+        if($_POST['pass']!=$_POST['pass2']){
+            $_SESSION['error'] = "Hasła są rózne";
+=======
+        if($_POST['email']!=$_POST['email2']){
+            $_SESSION['error'] = "Provided emails are different from each other";
+>>>>>>> parent of 89ad1d4... test
             ?>
             <script>
                 window.history.back();
@@ -27,22 +47,14 @@
         }
 
         if($_POST['pass']!=$_POST['pass2']){
-            $_SESSION['error'] = "Hasła są rózne";
-            ?>
-            <script>
-                window.history.back();
-            </script>
-            <?
-        }
-        if(!isset($_POST['terms'])){
-            $_SESSION['error'] = "Please agree to the terms";
+            $_SESSION['error'] = "Provided passwords are different";
             ?>
             <script>
                 window.history.back();
             </script>
             <?php
-        
         }
+
         require_once './connect.php';
 
         if($conn->connect_errno){

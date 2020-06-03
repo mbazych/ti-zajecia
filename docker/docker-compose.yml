@@ -4,11 +4,13 @@ services:
   php-fpm:
     build:
         context: ./php-fpm
+    ports:
+        - "9000:9000"
   nginx:
     build:
         context: ./nginx
     volumes:
-        - ../src:/var/www
+        - ../src:/var/www/src
         - ./nginx/nginx.conf:/etc/nginx/nginx.conf 
         - ./nginx/sites/:/etc/nginx/sites-available/
         - ./nginx/conf.d/:/etc/nginx/conf.d/

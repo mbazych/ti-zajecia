@@ -48,12 +48,11 @@
                 <?php
                 if(isset($_SESSION['error'])){
                   echo '<div class="col-md1">
-                          <div class="card card-outline card-danger">
-                            <div class="card-header">
+                          <div class="card">
+                            <div class="card-header card-text text-secondary">
                             '.$_SESSION['error'].'
                             </div>
                           </div>
-                          <!-- /.card -->
                         </div>
                         ';
                         unset($_SESSION['error']);

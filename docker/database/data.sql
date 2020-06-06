@@ -1151,10 +1151,10 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `Users`
+-- Struktura tabeli dla tabeli `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL,
   `surname` varchar(40) NOT NULL,
@@ -1167,10 +1167,10 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `Users`
+-- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `Users` (`id`, `name`, `surname`, `email`, `password`, `photo_path`, `city_id`, `birthday`, `created`) VALUES
+INSERT INTO `users` (`id`, `name`, `surname`, `email`, `password`, `photo_path`, `city_id`, `birthday`, `created`) VALUES
 (1, 'Tomasz', 'Kowalski', 'tomasz@wp.pl', '123', 'default_photo.png', 853, '1998-11-12', '2020-06-03 17:53:41'),
 (2, 'Wojciech', 'Kowalski', 'wojciech@wp.pl', '123', 'default_photo.png', 12, '1998-11-12', '2020-06-03 17:54:18'),
 (3, 'Marek', 'Nowak', 'marek@wp.pl', '123', 'default_photo.png', 12, '1998-11-12', '2020-06-03 17:54:33'),
@@ -1254,9 +1254,9 @@ ALTER TABLE `tags`
   ADD UNIQUE KEY `tag` (`tag`);
 
 --
--- Indeksy dla tabeli `Users`
+-- Indeksy dla tabeli `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uq_email` (`email`),
   ADD KEY `fk_city` (`city_id`);
@@ -1304,9 +1304,9 @@ ALTER TABLE `tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT dla tabeli `Users`
+-- AUTO_INCREMENT dla tabeli `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -1334,9 +1334,9 @@ ALTER TABLE `events_tags`
   ADD CONSTRAINT `events_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
 
 --
--- Ograniczenia dla tabeli `Users`
+-- Ograniczenia dla tabeli `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`);
 
 --
@@ -1344,7 +1344,7 @@ ALTER TABLE `Users`
 --
 ALTER TABLE `users_events`
   ADD CONSTRAINT `users_events_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
-  ADD CONSTRAINT `users_events_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`);
+  ADD CONSTRAINT `users_events_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

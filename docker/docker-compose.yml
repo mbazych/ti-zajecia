@@ -6,6 +6,8 @@ services:
       context: ./php-fpm
     volumes:
       - ../src:/var/www/src
+    ports:
+      - "9000":"9000"
   nginx:
     build:
       context: ./nginx

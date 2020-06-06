@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
-<<<<<<< HEAD
 -- Czas generowania: 03 Cze 2020, 20:30
-=======
--- Czas generowania: 02 Cze 2020, 21:34
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
@@ -23,17 +19,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
-<<<<<<< HEAD
 -- Baza danych: `events_project_database`
-=======
--- Baza danych: `cdv_ti`
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 --
 
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktura tabeli dla tabeli `categories`
 --
 
@@ -64,19 +55,12 @@ INSERT INTO `categories` (`id`, `categorie`) VALUES
 -- --------------------------------------------------------
 
 --
-=======
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 -- Struktura tabeli dla tabeli `city`
 --
 
 CREATE TABLE `city` (
-<<<<<<< HEAD
   `id` int(10) UNSIGNED NOT NULL,
   `state_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
-=======
-  `id` int(11) UNSIGNED NOT NULL,
-  `state_id` int(11) NOT NULL DEFAULT 0,
->>>>>>> e03389843d62331fe64954616205f6b472937e82
   `city` varchar(250) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1007,7 +991,6 @@ INSERT INTO `city` (`id`, `state_id`, `city`) VALUES
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktura tabeli dla tabeli `events`
 --
 
@@ -1030,30 +1013,10 @@ INSERT INTO `events` (`id`, `name`, `description`, `city_id`, `address`, `date`,
 (2, 'First job', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 853, 'Garbary 9', '2020-09-16 18:00:00', 2),
 (3, 'First week in Taiwan', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-08-14 20:30:00', 6),
 (4, 'Start earning!', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-10-14 20:30:00', 1);
-=======
--- Struktura tabeli dla tabeli `nationality`
---
-
-CREATE TABLE `nationality` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nationality` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Zrzut danych tabeli `nationality`
---
-
-INSERT INTO `nationality` (`id`, `nationality`) VALUES
-(1, 'Germany'),
-(2, 'England'),
-(3, 'Poland'),
-(4, 'USA');
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktura tabeli dla tabeli `events_tags`
 --
 
@@ -1092,24 +1055,6 @@ INSERT INTO `events_tags` (`event_id`, `tag_id`) VALUES
 (4, 28),
 (4, 30),
 (4, 31);
-=======
--- Struktura tabeli dla tabeli `permission`
---
-
-CREATE TABLE `permission` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `permission` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Zrzut danych tabeli `permission`
---
-
-INSERT INTO `permission` (`id`, `permission`) VALUES
-(1, 'admin'),
-(2, 'user'),
-(3, 'moderator');
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 -- --------------------------------------------------------
 
@@ -1118,11 +1063,7 @@ INSERT INTO `permission` (`id`, `permission`) VALUES
 --
 
 CREATE TABLE `state` (
-<<<<<<< HEAD
   `id` int(10) UNSIGNED NOT NULL,
-=======
-  `id` int(11) NOT NULL,
->>>>>>> e03389843d62331fe64954616205f6b472937e82
   `state` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1151,7 +1092,6 @@ INSERT INTO `state` (`id`, `state`) VALUES
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktura tabeli dla tabeli `tags`
 --
 
@@ -1207,30 +1147,10 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 (44, 'web design'),
 (13, 'wellness'),
 (27, 'workout');
-=======
--- Struktura tabeli dla tabeli `status`
---
-
-CREATE TABLE `status` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `status` varchar(30) NOT NULL,
-  `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Zrzut danych tabeli `status`
---
-
-INSERT INTO `status` (`id`, `status`, `description`) VALUES
-(1, 'aktywny', 'Użytkownik z takim statusem, może się logować'),
-(2, 'nieaktywny', 'Użytkownik z takim statusem,  nie może się logować'),
-(3, 'zablokowany', 'Użytkownik z takim statusem, nie może się logować do czasu aktywowania konta poprzez mail');
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktura tabeli dla tabeli `Users`
 --
 
@@ -1286,47 +1206,18 @@ INSERT INTO `users_events` (`user_id`, `event_id`, `timestamp`) VALUES
 (5, 4, '2020-06-03 18:23:10'),
 (6, 3, '2020-06-03 18:23:10'),
 (7, 3, '2020-06-03 18:23:10');
-=======
--- Struktura tabeli dla tabeli `user`
---
-
-CREATE TABLE `user` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `surname` varchar(50) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `pass` varchar(120) NOT NULL,
-  `birthday` date DEFAULT current_timestamp(),
-  `city_id` int(10) UNSIGNED NOT NULL,
-  `nationality_id` int(10) UNSIGNED NOT NULL,
-  `status_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
-  `permission_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
-  `createdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Zrzut danych tabeli `user`
---
-
-INSERT INTO `user` (`id`, `name`, `surname`, `email`, `pass`, `birthday`, `city_id`, `nationality_id`, `status_id`, `permission_id`, `createdate`) VALUES
-(1, 'asd', 'asdf', 'ASD@ASD.ASD', '123', '2020-06-02', 2, 1, 1, 1, '2020-06-02 19:29:45'),
-(2, 'Mateusz', 'Czarczynski', 'wp@wp.pl', '123', '2020-06-02', 861, 3, 1, 1, '2020-06-02 19:31:29');
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
-<<<<<<< HEAD
 -- Indeksy dla tabeli `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
-=======
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 -- Indeksy dla tabeli `city`
 --
 ALTER TABLE `city`
@@ -1334,7 +1225,6 @@ ALTER TABLE `city`
   ADD KEY `state_id` (`state_id`);
 
 --
-<<<<<<< HEAD
 -- Indeksy dla tabeli `events`
 --
 ALTER TABLE `events`
@@ -1349,18 +1239,6 @@ ALTER TABLE `events_tags`
   ADD UNIQUE KEY `event_id` (`event_id`,`tag_id`),
   ADD KEY `fk_events` (`event_id`),
   ADD KEY `fk_tags` (`tag_id`);
-=======
--- Indeksy dla tabeli `nationality`
---
-ALTER TABLE `nationality`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeksy dla tabeli `permission`
---
-ALTER TABLE `permission`
-  ADD PRIMARY KEY (`id`);
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 --
 -- Indeksy dla tabeli `state`
@@ -1369,7 +1247,6 @@ ALTER TABLE `state`
   ADD PRIMARY KEY (`id`);
 
 --
-<<<<<<< HEAD
 -- Indeksy dla tabeli `tags`
 --
 ALTER TABLE `tags`
@@ -1391,30 +1268,12 @@ ALTER TABLE `users_events`
   ADD UNIQUE KEY `user_id` (`user_id`,`event_id`),
   ADD KEY `fk_users` (`user_id`),
   ADD KEY `fk_events` (`event_id`);
-=======
--- Indeksy dla tabeli `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeksy dla tabeli `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `city_id` (`city_id`),
-  ADD KEY `nationality_id` (`nationality_id`),
-  ADD KEY `status_id` (`status_id`),
-  ADD KEY `permission_id` (`permission_id`);
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 --
 -- AUTO_INCREMENT dla tabel zrzutów
 --
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
@@ -1449,42 +1308,6 @@ ALTER TABLE `tags`
 --
 ALTER TABLE `Users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-=======
--- AUTO_INCREMENT dla tabeli `city`
---
-ALTER TABLE `city`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1024;
-
---
--- AUTO_INCREMENT dla tabeli `nationality`
---
-ALTER TABLE `nationality`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT dla tabeli `permission`
---
-ALTER TABLE `permission`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT dla tabeli `state`
---
-ALTER TABLE `state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT dla tabeli `status`
---
-ALTER TABLE `status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT dla tabeli `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -1497,7 +1320,6 @@ ALTER TABLE `city`
   ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`);
 
 --
-<<<<<<< HEAD
 -- Ograniczenia dla tabeli `events`
 --
 ALTER TABLE `events`
@@ -1523,15 +1345,6 @@ ALTER TABLE `Users`
 ALTER TABLE `users_events`
   ADD CONSTRAINT `users_events_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   ADD CONSTRAINT `users_events_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`);
-=======
--- Ograniczenia dla tabeli `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`nationality_id`) REFERENCES `nationality` (`id`),
-  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
-  ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`);
->>>>>>> e03389843d62331fe64954616205f6b472937e82
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

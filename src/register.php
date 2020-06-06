@@ -65,13 +65,41 @@
                     <label for="inputEmail">Email address</label>
                     <input name="email" type="email" class="form-control-lg form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                   </div>
+                  <div class="form-group form-group-lg">
+                    <label for="inputName">Name</label>
+                    <input name="name" type="text" class="form-control-lg form-control" id="inputName" placeholder="Enter name">
+                  </div>
+                  <div class="form-group form-group-lg">
+                    <label for="inputSurname">Surname</label>
+                    <input name="surname" type="text" class="form-control-lg form-control" id="inputSurname"  placeholder="Enter surname">
+                  </div>
+                  <div class="form-group form-group-lg">
+                    <label for="inputCity">City</label>
+                    <select name="city" type="text" class="form-control-lg form-control" id="inputCity"  placeholder="City">
+                        <option selected disabled>City</option>
+                                    <?php
+                                    require_once('./scripts/connect.php');
+                                    $zapytanie = "SELECT * FROM `city`";
+                                    $wpisz= $conn->query($zapytanie);
+                                    while($rekord = $wpisz->fetch_assoc()){
+                                        echo<<<CITY
+                                        <option value={$rekord['id']}>{$rekord['city']}</option>
+                        CITY;
+                                    }
+                                    ?>
+                                    </select>
+                  </div>
                   <div class="form-group">
                     <label for="inputPassword">Password</label>
-                    <input type="password" class="form-control-lg form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter safe password">
+                    <input name="pass" type="password" class="form-control-lg form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter safe password">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword2">Repeat password</label>
+                    <input name="pass2" type="password" class="form-control-lg form-control" id="inputPassword2" aria-describedby="passwordHelp" placeholder="Repeat password">
                   </div>
                   <div class="form-group">
                     <label for="inputDate">Birthday date</label>
-                    <input type="date" class="form-control-lg form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Enter birthday date">
+                    <input name="birthday" type="date" class="form-control-lg form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Enter birthday date">
                   </div>
                   <button type="submit" class="btn btn-dark  btn-lg">Register</button>
 

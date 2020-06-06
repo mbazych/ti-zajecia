@@ -26,7 +26,7 @@ services:
       context: ./database
     environment:
       - MYSQL_DATABASE=eventano
-      - MYSQL_USER=root
+      - MYSQL_USER=event
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=docker
     volumes:

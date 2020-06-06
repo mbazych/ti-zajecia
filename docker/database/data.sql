@@ -31,14 +31,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `categorie` varchar(40) NOT NULL,
-  `photo_path` varchar(30) NOT NULL DEFAULT 'default_photo_categorie.png',
+  `photo_path_categories` varchar(30) NOT NULL DEFAULT 'default_photo_categorie.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
-INSERT INTO `categories` (`id`, `categorie`, `photo_path`) VALUES
+INSERT INTO `categories` (`id`, `categorie`, `photo_path_categories`) VALUES
 (1, 'Business', 'business.png'),
 (2, 'Career', 'career.png'),
 (3, 'Health & Wellness', 'health_wellness.png'),
@@ -1003,7 +1003,8 @@ CREATE TABLE `events` (
   `address` varchar(40) NOT NULL,
   `date` datetime NOT NULL,
   `photo_path` varchar(30) NOT NULL DEFAULT 'default_photo_event.png',
-  `categorie_id` int(10) UNSIGNED NOT NULL
+  `categorie_id` int(10) UNSIGNED NOT NULL,
+  `host_id` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1326,7 +1327,8 @@ ALTER TABLE `city`
 --
 ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`);
+  ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
+  ADD CONSTRAINT `events_ibfk_3` FOREIGN KEY (`host_id`) REFERENCES `users` (`id`);
 
 --
 -- Ograniczenia dla tabeli `events_tags`

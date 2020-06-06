@@ -101,25 +101,27 @@ City;
             </div>
         </section>
         <section>
-            <div class="container d-flex align-items-center flex-column">
+
+
+            <!-- <div class="container d-flex align-items-center flex-column">
                 <div class="col-lg-9 col-lg-push-1 mt-5 mb-5">
                     
                     <div class="container d-flex align-items-center flex-row">
                         <div class="row">
                             <div class=" col-xl-3">
                             <?php
-                                require_once("./scripts/connect.php");
-                                $result = $conn->query("SELECT id,name FROM events ORDER BY ID DESC");
+                            //     require_once("./scripts/connect.php");
+                            //     $result = $conn->query("SELECT id,name,description FROM events ORDER BY ID DESC");
                             
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<div class='card'> <div class='card-body'>{$row['name']} </div></div>";
-                            }
+                            // while ($row = $result->fetch_assoc()) {
+                            //     echo "<div class='card'><div class='card-header'> {$row['name']}<div class='card-body'>{$row['description']} </div> </div></div>";
+                            // }
                             ?>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
         <!-- Footer-->
         <footer class="footer text-center">

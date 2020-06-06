@@ -1001,6 +1001,7 @@ CREATE TABLE `events` (
   `city_id` int(10) UNSIGNED NOT NULL,
   `address` varchar(40) NOT NULL,
   `date` datetime NOT NULL,
+  `photo_path` varchar(30) NOT NULL DEFAULT 'default_photo_event.png',
   `categorie_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

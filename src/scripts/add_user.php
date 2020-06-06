@@ -33,6 +33,7 @@
             $i=$stmt->execute();
             if($i){
                 exit();
+                header("location: ../index.php");
             }else{
 
                  $zapytanie = "SELECT * FROM `users` WHERE email=?";

@@ -23,7 +23,7 @@
                 <a class="navbar-brand js-scroll-trigger" href="#page-top"><?php echo 'EVENTANO'?></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Events</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./login.php">Login</a></li>
@@ -46,62 +46,82 @@
                 <p class="masthead-subheading font-weight-light mb-0">Your desired events in one place.</p>
             </div>
         </header>
-        <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
-            <div class="container">
-                <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Categories</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Portfolio Grid Items-->
-                <div class="row">
-                    <!-- Portfolio Item 1-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="./static/assets/img/portfolio/cabin.png" alt="" />
-                        </div>
-                    </div>
-                <?php
+        <section>
+            <div class="container d-flex align-items-center flex-column">
+                <div class="col-lg-9 col-lg-push-1 mt-5 mb-5">
+                    
+                    <div class="container d-flex align-items-center flex-row">
+                        <div class="row">
+                            <div class=" col-xl-3">
+                                <form action="./scripts/search.php" method="get" id="searchForm" class="input-group">
+                                    <div class="input-group-btn search-panel">
+                                        <?php
                                         require_once("./scripts/connect.php");
                                         $result = $conn->query("SELECT id,categorie FROM categories ORDER BY ID DESC");
                                         ?>
-                                        
-                                            <?php  
+                                        <select name="category" id="category" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <option value="Select category">Select category</option>
+                                            <<?php  
                                             while ($row = $result->fetch_assoc()) {
-                                                echo `<div class="card"><img class="card-img-top" src="{$row['photo_path']} <div class="card-body"><h5 class="card-title">{$row['categorie']}</h5></div></div>`;
-                                                //echo `img src="{$row['photo_path']}"`;
-                                            }?>
+                                                echo<<<Category
+                                        <option value={$row['id']}>{$row['categorie']}</option>
+Category;
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                                                        <div class="input-group-btn search-panel">
+                                        <?php
+                                        require_once("./scripts/connect.php");
+                                        $result = $conn->query("SELECT id,city FROM city ORDER BY ID DESC");
+                                        ?>
+                                        <select name="city" id="city" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <option value="Select city">Select city</option>
+                                            <<?php  
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo<<<City
+                                        <option value={$row['id']}>{$row['city']}</option>
+City;
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <input type="text" class="form-control" name="x" placeholder="Search events...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </form><!-- end form -->     
+                            </div><!-- end col-xs-8 -->       
+                        </div><!-- end row -->  
+                    </div><!-- end container -->    
+                </div><!-- end col-md-9 -->
             </div>
         </section>
-        <!-- Contact Section-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact us!</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <p>Phone: 123123123</p>
-                        <p>Nadbrzeżna 21 </p>
-                        <p>72-320 Trzebiatów</p>
-                        <p>NIP: 123123123123</p>
+        <section>
+
+
+            <!-- <div class="container d-flex align-items-center flex-column">
+                <div class="col-lg-9 col-lg-push-1 mt-5 mb-5">
+                    
+                    <div class="container d-flex align-items-center flex-row">
+                        <div class="row">
+                            <div class=" col-xl-3">
+                            <?php
+                            //     require_once("./scripts/connect.php");
+                            //     $result = $conn->query("SELECT id,name,description FROM events ORDER BY ID DESC");
+                            
+                            // while ($row = $result->fetch_assoc()) {
+                            //     echo "<div class='card'><div class='card-header'> {$row['name']}<div class='card-body'>{$row['description']} </div> </div></div>";
+                            // }
+                            ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
         <!-- Footer-->
         <footer class="footer text-center">

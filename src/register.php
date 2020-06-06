@@ -49,7 +49,7 @@
                 if(isset($_SESSION['error'])){
                   echo '<div class="col-md1">
                           <div class="card">
-                            <div class="card-header card-text text-secondary">
+                            <div class="text-center card-header card-text text-secondary">
                             '.$_SESSION['error'].'
                             </div>
                           </div>

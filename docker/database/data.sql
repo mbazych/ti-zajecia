@@ -30,27 +30,28 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `categorie` varchar(40) NOT NULL
+  `categorie` varchar(40) NOT NULL,
+  `photo_path` varchar(30) NOT NULL DEFAULT 'default_photo_categorie.png',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `categories`
 --
 
-INSERT INTO `categories` (`id`, `categorie`) VALUES
-(1, 'Business'),
-(2, 'Career'),
-(3, 'Health & Wellness'),
-(4, 'Learning'),
-(5, 'Social'),
-(6, 'Travelling'),
-(7, 'Food'),
-(8, 'Sport & Fitness'),
-(9, 'Games'),
-(10, 'Book Lovers'),
-(11, 'Fashion'),
-(12, 'DIY'),
-(13, 'Tech');
+INSERT INTO `categories` (`id`, `categorie`, `photo_path`) VALUES
+(1, 'Business', 'business.png'),
+(2, 'Career', 'career.png'),
+(3, 'Health & Wellness', 'health_wellness.png'),
+(4, 'Learning','learning.png'),
+(5, 'Social', 'social.png'),
+(6, 'Travelling', 'travelling.png'),
+(7, 'Food', 'food.png'),
+(8, 'Sport & Fitness','sport_fitness.png'),
+(9, 'Games','games.png'),
+(10, 'Book Lovers','book_lovers.png'),
+(11, 'Fashion','fashion.png'),
+(12, 'DIY','diy.png'),
+(13, 'Tech','tech.png');
 
 -- --------------------------------------------------------
 

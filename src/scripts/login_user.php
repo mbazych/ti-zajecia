@@ -27,7 +27,7 @@
             exit();
         }
 
-       $_SESSION['logged']['permission']=$row['permission_id'];
+       $_SESSION['logged']['user_id']=$row['id'];
        $_SESSION['logged']['name']=$row['name'];
        $_SESSION['logged']['surname']=$row['surname'];
        $_SESSION['logged']['email']=$row['email'];

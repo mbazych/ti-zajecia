@@ -38,14 +38,7 @@
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                <h1 class="masthead-heading text-uppercase mb-0">EVENTANO</h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <?php
+            <?php
                 if(isset($_SESSION['error'])){
                   echo '<div class="col-md1">
                           <div class="card">
@@ -58,6 +51,14 @@
                         unset($_SESSION['error']);
                 }
                 ?>
+                <h1 class="masthead-heading text-uppercase mb-0">EVENTANO</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                
                 <form action="./scripts/login_user.php" method="post">
 
                   <div class="form-group form-group-lg">

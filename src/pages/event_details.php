@@ -1,10 +1,12 @@
 <?php
 session_start();
-if(!isset($_GET['id'])){
+if (!isset($_GET['id'])) {
     header('location: ../');
     exit();
 }
 $id = $_GET['id'];
+$viewer = false;
+$host = false;
 require_once '../scripts/connect.php';
 $response = $conn->query("SELECT events.*, city.*, categories.*,users.name as `host_name`,users.surname as `host_surname`, users.email 
                             FROM events, categories, city, users
@@ -12,22 +14,30 @@ $response = $conn->query("SELECT events.*, city.*, categories.*,users.name as `h
                                 AND events.categorie_id = categories.id
                                 AND events.host_id = users.id
                                 AND events.id = " . $id);
-if($response->num_rows ==0){
-    $_SESSION['error']="This event is expired or has never existed";
-    header('location: ../');
-    exit();
-}
-$item = $response->fetch_assoc();
-$response2 = $conn->query("SELECT users.*, users_events.*
+if ($response->num_rows == 0) {
+    $_SESSION['error'] = "Event with id <b>" . $id . "</b> is expired or has never existed";
+} else {
+    $item = $response->fetch_assoc();
+    $response2 = $conn->query("SELECT users.*, users_events.*
                             FROM users_events, events, users 
                             WHERE users_events.user_id = users.id
                                 AND users_events.event_id = events.id
                                 AND users_events.event_id = " . $id);
-$response3 = $conn->query("SELECT tags.*
+    $response3 = $conn->query("SELECT tags.*
                             FROM events_tags, events, tags 
                             WHERE events_tags.tag_id = tags.id
                                 AND events_tags.event_id = events.id
                                 AND events_tags.event_id = " . $id);
+    if (isset($_SESSION['logged']['email'])) {
+
+        if ($item['email'] == $_SESSION['logged']['email'])
+            $host = true;
+        while ($iteration = $response2->fetch_assoc()) {
+            if ($iteration['email'] == $_SESSION['logged']['email'])
+                $viewer = true;
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +98,6 @@ $response3 = $conn->query("SELECT tags.*
     }
 
     .share-btn {
-        border: none;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 20px;
         font-weight: lighter;
@@ -98,7 +107,12 @@ $response3 = $conn->query("SELECT tags.*
         top: 30px
     }
 
-    .takepart-btn {
+    .share-btn:hover{
+        color:#1abc9c;
+        background-color: white;
+    }
+
+    .btn-form {
         border: 10px solid white;
         border: none;
         font-family: Arial, Helvetica, sans-serif;
@@ -110,12 +124,32 @@ $response3 = $conn->query("SELECT tags.*
         top: 15px;
         box-shadow: 0px 21px 58px -11px rgba(0, 0, 0, 0.75);
         width: 100%;
+    }
+
+    .takepart-btn{
         background-color: #1abc9c;
     }
 
+    
+    .not-intrested-btn{
+        background-color: #d55;
+    }
+
+    .takepart-btn:hover{
+        background-color: white;
+        color:#1abc9c
+    }
+    
+    .not-intrested-btn:hover{
+        background-color: white;
+        color: #d55;
+    }
+
     .participants {
-        margin: 0px 10px;
-        border-bottom:1px solid #ccc;
+        margin: 10px;
+        padding: 0px 10px;
+        border-bottom: 1px solid #ccc;
+        border-radius: 10px;
     }
 
     .participant {
@@ -141,6 +175,12 @@ $response3 = $conn->query("SELECT tags.*
 
     .space {
         margin-top: 10%;
+    }
+
+    .you {
+        margin: 20px 0px 0px 20%;
+        color: gray;
+        text-align: right;
     }
 </style>
 <script>
@@ -173,6 +213,20 @@ $response3 = $conn->query("SELECT tags.*
             </div>
         </div>
     </nav>
+    <?
+    if (isset($_SESSION['error'])) {
+        echo '<div class="col-md1">
+                            <div class="card">
+                              <div class="text-center card-header card-text text-secondary">
+                              ' . $_SESSION['error'] . '
+                              </div>
+                            </div>
+                          </div>
+                          ';
+        unset($_SESSION['error']);
+        exit();
+    }?>
+
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">
         <div class="row">
@@ -219,11 +273,24 @@ $response3 = $conn->query("SELECT tags.*
 
                     </div>
                     <hr style="border-color:white" />
+                    <?if($host){?>
+                            <h4>You are the host!</h4>
+                    <?}else if($viewer){?>
                     <form action="../scripts/add_user_to_event.php">
-                        <button class="btn-default btn-sm btn takepart-btn">
+                        <button class="btn-default btn-sm btn not-intrested-btn btn-form">
+                            Not intrested
+                        </button>
+                    </form>
+                    <?}else {?>
+                    <form action="../scripts/add_user_to_event.php">
+                        <button class="btn-default btn-sm btn takepart-btn btn-form">
                             Take part
                         </button>
                     </form>
+                    <?}?>
+
+
+
                 </div>
             </div>
             <div class="row">
@@ -238,6 +305,17 @@ $response3 = $conn->query("SELECT tags.*
                     <hr style="border-color:black" />
                     <?
                         while($person = $response2->fetch_assoc()){
+                            if($_SESSION['logged']['email'] == $person['email']){
+                                echo "<div class='participants row'>
+                                    <div class='person-img-circle'>
+                                        <img src='../static/img/".$person['photo_path']."' alt='".$person['photo_path']."' class='img-size-50'/>
+                                </div>
+                                    <div class='participant'>"
+                                        .$person['name']." ".$person['surname'].
+                                    "</div>
+                                    <div class='you'>You</div>
+                                </div>";
+                            }else
                             echo "<div class='participants row'>
                                     <div class='person-img-circle'>
                                         <img src='../static/img/".$person['photo_path']."' alt='".$person['photo_path']."' class='img-size-50'/>
@@ -263,7 +341,6 @@ $response3 = $conn->query("SELECT tags.*
             </div>
         </div>
     </section>
-
     <!-- Footer-->
     <footer class="footer text-center">
         <div class="container">

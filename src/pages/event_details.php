@@ -18,11 +18,13 @@ if ($response->num_rows == 0) {
     $_SESSION['error'] = "Event with id <b>" . $id . "</b> is expired or has never existed";
 } else {
     $item = $response->fetch_assoc();
-    $response2 = $conn->query("SELECT users.*, users_events.*
-                            FROM users_events, events, users 
-                            WHERE users_events.user_id = users.id
-                                AND users_events.event_id = events.id
-                                AND users_events.event_id = " . $id);
+    $sql = "SELECT users.*, users_events.*
+    FROM users_events, events, users 
+    WHERE users_events.user_id = users.id
+        AND users_events.event_id = events.id
+        AND users_events.event_id = " . $id;
+    $response2 = $conn->query($sql);
+    $response4 = $conn->query($sql);
     $response3 = $conn->query("SELECT tags.*
                             FROM events_tags, events, tags 
                             WHERE events_tags.tag_id = tags.id
@@ -32,7 +34,7 @@ if ($response->num_rows == 0) {
 
         if ($item['email'] == $_SESSION['logged']['email'])
             $host = true;
-        while ($iteration = $response2->fetch_assoc()) {
+        while ($iteration = $response4->fetch_assoc()) {
             if ($iteration['email'] == $_SESSION['logged']['email'])
                 $viewer = true;
         }
@@ -59,130 +61,8 @@ if ($response->num_rows == 0) {
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../static/css/styles.css" rel="stylesheet" />
+    <link href="../static/css/pageStyle.css" rel="stylesheet" />
 </head>
-<style>
-    .event_photo {
-        position: relative;
-        top: -130px;
-        border-radius: 10px;
-        z-index: 2;
-        background-color: transparent;
-    }
-
-
-    .photo {
-        width: 100%;
-        height: 100%;
-        box-shadow: 0px 21px 68px -11px rgba(0, 0, 0, 0.75);
-        border-radius: 10px;
-    }
-
-    .masthead {
-        position: relative;
-        z-index: 1;
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-
-    .info {
-
-        position: relative;
-        top: -110px;
-        z-index: 0;
-        margin-left: 25px;
-        margin-right: 25px;
-        padding-top: 30px;
-        background-color: #2c3e50;
-        border-radius: 10px;
-        max-height: 350px;
-    }
-
-    .share-btn {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        font-weight: lighter;
-        position: relative;
-        border: 1px solid white;
-        color: white;
-        top: 30px
-    }
-
-    .share-btn:hover{
-        color:#1abc9c;
-        background-color: white;
-    }
-
-    .btn-form {
-        border: 10px solid white;
-        border: none;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 30px;
-        font-weight: lighter;
-        position: relative;
-        color: white;
-        z-index: 5;
-        top: 15px;
-        box-shadow: 0px 21px 58px -11px rgba(0, 0, 0, 0.75);
-        width: 100%;
-    }
-
-    .takepart-btn{
-        background-color: #1abc9c;
-    }
-
-    
-    .not-intrested-btn{
-        background-color: #d55;
-    }
-
-    .takepart-btn:hover{
-        background-color: white;
-        color:#1abc9c
-    }
-    
-    .not-intrested-btn:hover{
-        background-color: white;
-        color: #d55;
-    }
-
-    .participants {
-        margin: 10px;
-        padding: 0px 10px;
-        border-bottom: 1px solid #ccc;
-        border-radius: 10px;
-    }
-
-    .participant {
-        margin: 20px;
-    }
-
-
-    .person-img-circle img {
-        border-radius: 25px;
-        margin: 10px 0;
-        height: 50px;
-        width: 50px;
-    }
-
-    .tag {
-        border: 1px solid gray;
-        margin: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-
-    .space {
-        margin-top: 10%;
-    }
-
-    .you {
-        margin: 20px 0px 0px 20%;
-        color: gray;
-        text-align: right;
-    }
-</style>
 <script>
     function shareClick() {
         if (confirm("Copy url to clickboard?")) {
@@ -198,24 +78,9 @@ if ($response->num_rows == 0) {
 </script>
 
 <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="../#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#portfolio">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#about">About</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="../login.php">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="../register.php">Register</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <?
+    <!-- Navigation-->        <?
     if (isset($_SESSION['error'])) {
-        echo '<div class="col-md1">
+        echo '<div class="col-md4">
                             <div class="card">
                               <div class="text-center card-header card-text text-secondary">
                               ' . $_SESSION['error'] . '
@@ -225,11 +90,45 @@ if ($response->num_rows == 0) {
                           ';
         unset($_SESSION['error']);
         exit();
-    }?>
+    }
+    if (isset($_SESSION['info'])) {
+        echo '<div class="col-md4">
+                            <div class="card">
+                              <div class="text-center card-header card-text text-secondary">
+                              ' . $_SESSION['info'] . '
+                              </div>
+                            </div>
+                          </div>
+                          ';
+        unset($_SESSION['info']);
+    }
+    
+    ?>
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+        <div class="container">
+
+            <a class="navbar-brand js-scroll-trigger" href="../#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#portfolio">Events</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
+                    <?if(!isset($_SESSION['logged']['email'])){?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../login.php">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="../register.php">Register</a></li>
+                    <?}else{?>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 roundedl" style="color:#1abc9c" href="../scripts/logout.php">Log out</a></li>
+
+                    <?}?>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">
-        <div class="row">
+
+        <div class="row" style="margin:0px">
             <div class="col-lg-6 ml-auto">
                 <h1 class="masthead-subhead">
                     <?echo  $item['name'] ?>
@@ -274,15 +173,18 @@ if ($response->num_rows == 0) {
                     </div>
                     <hr style="border-color:white" />
                     <?if($host){?>
-                            <h4>You are the host!</h4>
+                    <h4>You are the host!</h4>
                     <?}else if($viewer){?>
-                    <form action="../scripts/add_user_to_event.php">
+                    <form method=GET action="../scripts/add_user_to_event.php">
+                        <input hidden name="viewer" value="true">
+                        <input hidden name="event_id" value=<?echo $id?>>
                         <button class="btn-default btn-sm btn not-intrested-btn btn-form">
                             Not intrested
                         </button>
                     </form>
                     <?}else {?>
-                    <form action="../scripts/add_user_to_event.php">
+                    <form method=GET action="../scripts/add_user_to_event.php">
+                        <input hidden name="event_id" value=<?echo $id?>>
                         <button class="btn-default btn-sm btn takepart-btn btn-form">
                             Take part
                         </button>

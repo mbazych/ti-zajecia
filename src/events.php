@@ -35,7 +35,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./login.php">Login</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="../register.php">Register</a></li>
                     <?}else{?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 roundedl" style="color:#1abc9c" href="./scripts/logout.php">Log out</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./scripts/logout.php">Log out</a></li>
 
                     <?}?>
                 </ul>
@@ -58,18 +58,18 @@
         </header>
         <section>
             <div class="container d-flex align-items-center flex-column">
-                <div class="col-lg-9 col-lg-push-1 mt-5 mb-5">
+                <div class="col-lg-9 col-lg-push-1 mt-5 mb-5 text-center">
                     
-                    <div class="container d-flex align-items-center flex-row">
+                    <div class="container d-flex col-lg-12 align-items-center flex-row">
                         <div class="row">
-                            <div class=" col-xl-3">
-                                <form action="./scripts/search.php" method="get" id="searchForm" class="input-group">
-                                    <div class="input-group-btn search-panel">
-                                        <?php
+                            <!-- <div class=" "> -->
+                                    <form action="./scripts/search.php" method="get" id="searchForm" class="input-group">
+
+                                            <?php
                                         require_once("./scripts/connect.php");
-                                        $result = $conn->query("SELECT id,categorie FROM categories ORDER BY ID DESC");
+                                        $result = $conn->query("SELECT id,categorie FROM categories ORDER BY id DESC");
                                         ?>
-                                        <select name="category" id="category" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <select name="category" id="category" class="col-md-11 col-lg-3 mb-12 btn btn-default dropdown-toggle" data-toggle="dropdown">
                                             <option value="Select category">Select category</option>
                                             <<?php  
                                             while ($row = $result->fetch_assoc()) {
@@ -78,15 +78,13 @@
 Category;
                                             }
                                             ?>
-                                        </select>
-                                    </div>
-                                                                        <div class="input-group-btn search-panel">
+                                            </select>
                                         <?php
                                         require_once("./scripts/connect.php");
                                         $result = $conn->query("SELECT id,city FROM city ORDER BY ID DESC");
                                         ?>
-                                        <select name="city" id="city" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                            <option value="Select city">Select city</option>
+                                            <select name="city" id="city" style="margin-left:10px" class="col-md-11 col-lg-3 mb-12 btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <option value="Select city">Select city</option>
                                             <<?php  
                                             while ($row = $result->fetch_assoc()) {
                                                 echo<<<City
@@ -94,17 +92,13 @@ Category;
 City;
                                             }
                                             ?>
-                                        </select>
-                                    </div>
-                                    <input type="text" class="form-control" name="x" placeholder="Search events...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </span>
-                                    </div>
-                                </form><!-- end form -->     
-                            </div><!-- end col-xs-8 -->       
+                                            </select>
+                                        <input type="text" class="col-md-11 col-lg-3 mb-12 btn" name="x" style="border:1px solid #2c3e50;margin-left:10px" placeholder="Search events...">
+                                            <button class="col-md-11 col-lg-2 mb-12 glyphicon glyphicon-search btn-default btn takepart-btn" style="color:#2c3e50;margin-left:10px" type="submit">
+                                            Submit
+                                                </button>
+                                    </form><!-- end form -->        
+                            <!-- </div>end col-xs-8        -->
                         </div><!-- end row -->  
                     </div><!-- end container -->    
                 </div><!-- end col-md-9 -->

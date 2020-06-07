@@ -37,7 +37,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./login.php">Login</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="../register.php">Register</a></li>
                     <?}else{?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 roundedl" style="color:#1abc9c" href="./scripts/logout.php">Log out</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./scripts/logout.php">Log out</a></li>
 
                     <?}?>
                 </ul>
@@ -58,39 +58,29 @@
             <p class="masthead-subheading font-weight-light mb-0">Your desired events in one place.</p>
         </div>
     </header>
-    <!-- Portfolio Section-->
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
-            <!-- Portfolio Section Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Categories</h2>
-            <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Portfolio Grid Items-->
             <div class="row">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <a href="./pages/event_details.php?id=1">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="./static/assets/img/portfolio/cabin.png" alt="" />
-                        </div>
-                    </a>
-                </div>
                 <?php
                 require_once("./scripts/connect.php");
-                $result = $conn->query("SELECT id,categorie FROM categories ORDER BY ID DESC");
-                ?>
-
-                <?php
+                $result = $conn->query("SELECT * FROM `categories` ORDER BY id DESC");
                 while ($row = $result->fetch_assoc()) {
-                    echo `<div class="card"><img class="card-img-top" src="{$row['photo_path']} <div class="card-body"><h5 class="card-title">{$row['categorie']}</h5></div></div>`;
-                    //echo `img src="{$row['photo_path']}"`;
+                    echo '<div class="col-md-6 col-lg-4 mb-5">
+                            <div class="card" style="border:none; border-bottom: 1px solid gray; border-left:1px solid gray">
+                                <img style="background-color:#FFDAC1 ;height:240px; object-fit:cover" class="card-img-top" src="./static/img/'.$row['photo_path_categories'].'" alt="dziala"/>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        '.$row['categorie'].'
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>';
                 } ?>
             </div>
     </section>

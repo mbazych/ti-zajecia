@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_GET['id'])){
+    header('location: ../');
+    exit();
+}
 $id = $_GET['id'];
 require_once '../scripts/connect.php';
 $response = $conn->query("SELECT events.*, city.*, categories.*,users.name as `host_name`,users.surname as `host_surname`, users.email 
@@ -8,17 +12,22 @@ $response = $conn->query("SELECT events.*, city.*, categories.*,users.name as `h
                                 AND events.categorie_id = categories.id
                                 AND events.host_id = users.id
                                 AND events.id = " . $id);
+if($response->num_rows ==0){
+    $_SESSION['error']="This event is expired or has never existed";
+    header('location: ../');
+    exit();
+}
 $item = $response->fetch_assoc();
-$response2 = $conn->query("SELECT users.*
+$response2 = $conn->query("SELECT users.*, users_events.*
                             FROM users_events, events, users 
                             WHERE users_events.user_id = users.id
                                 AND users_events.event_id = events.id
-                                AND users_events.event_id = ".$id);
+                                AND users_events.event_id = " . $id);
 $response3 = $conn->query("SELECT tags.*
                             FROM events_tags, events, tags 
                             WHERE events_tags.tag_id = tags.id
                                 AND events_tags.event_id = events.id
-                                AND events_tags.event_id = ".$id);
+                                AND events_tags.event_id = " . $id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,11 +113,24 @@ $response3 = $conn->query("SELECT tags.*
         background-color: #1abc9c;
     }
 
-    .participants{
-        border-bottom:1px solid #ccc
+    .participants {
+        margin: 0px 10px;
+        border-bottom:1px solid #ccc;
     }
 
-    .tag{
+    .participant {
+        margin: 20px;
+    }
+
+
+    .person-img-circle img {
+        border-radius: 25px;
+        margin: 10px 0;
+        height: 50px;
+        width: 50px;
+    }
+
+    .tag {
         border: 1px solid gray;
         margin: 10px;
         padding-left: 20px;
@@ -117,8 +139,8 @@ $response3 = $conn->query("SELECT tags.*
         padding-bottom: 5px;
     }
 
-    .space{
-        margin-top:10%;
+    .space {
+        margin-top: 10%;
     }
 </style>
 <script>
@@ -216,22 +238,29 @@ $response3 = $conn->query("SELECT tags.*
                     <hr style="border-color:black" />
                     <?
                         while($person = $response2->fetch_assoc()){
-                            echo "<p class='participants'>".$person['name']." ".$person['surname']."</p>";
+                            echo "<div class='participants row'>
+                                    <div class='person-img-circle'>
+                                        <img src='../static/img/".$person['photo_path']."' alt='".$person['photo_path']."' class='img-size-50'/>
+                                </div>
+                                    <div class='participant'>"
+                                        .$person['name']." ".$person['surname'].
+                                    "</div>
+                                </div>";
                         }
                     ?>
                 </div>
             </div>
 
-            <div class="space " >
-            <p>Tags:</p>
-                    <div class="row">
-                        <?
+            <div class="space ">
+                <p>Tags:</p>
+                <div class="row">
+                    <?
                         while($tag = $response3->fetch_assoc()){
                             echo "<div class='col-md-11 col-lg-2 mb-12 tag'>".$tag['tag']."</div>";
                         }
                     ?>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
 

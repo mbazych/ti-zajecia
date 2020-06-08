@@ -106,37 +106,41 @@ City;
 
 
 
-                    
-                    <div class="container">
-                        <div class="row col-md-12 mb-12 col-lg-12">
-                            <!-- <div class=" col-sm"> -->
-                            <?php
-                                require_once("./scripts/connect.php");
-                                $result = $conn->query("SELECT id,name,photo_path,description FROM events ORDER BY ID DESC");
-                                $i = 4;
-                            while ($row = $result->fetch_assoc()) {
-      
-                                echo "<div class='col col-md-12 mb-12 col-lg-3' >
+
+        <div class="container">
+            <div class="row col-md-12 mb-12 col-lg-12">
+                <!-- <div class=" col-sm"> -->
+                <?php
+                require_once("./scripts/connect.php");
+                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events ORDER BY ID DESC");
+                $i = 4;
+                while ($row = $result->fetch_assoc()) {
+
+                    echo "<div class='col col-md-12 mb-12 col-lg-3'>
                                         <div class='card'>
-                                            <div class='card-header'>
-                                                <img class='card-img-top' src='./static/img/{$row['photo_path']}'>
-                                                    <div class='card-body'>
+                                            <div class='card-header' style='padding:0'>
+                                                <img class='card-img-top' style='height:150px; object-fit:cover' src='./static/img/{$row['photo_path']}'>
+                                                
+                                                </div>    
+                                                <div class='card-body' style='height:150px'>
                                                         <h5 class='card-title'> 
                                                             {$row['name']}
                                                         </h5>
                                                         <p class='card-text'>
                                                             {$row['description']}
                                                         </p>
-                                                    </div>
+                                            </div><div class='card-body' style='color:gray;'>
+                                            ".date('g:i a', strtotime($row['date']))."
+                                            <br />
+                                            ".date('F j, Y', strtotime($row['date']))."
                                             </div>
                                         </div>
                                      </div>";
-
-                            }
-                            ?>
-                            <!-- </div> -->
-                        </div>
-                    </div>
+                }
+                ?>
+                <!-- </div> -->
+            </div>
+        </div>
 
     </section>
     <!-- Footer-->

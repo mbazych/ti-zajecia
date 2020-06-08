@@ -16,7 +16,7 @@
 
 .photo {
     object-fit: cover;
-    background-color: transparent;
+    background-color: #ccc;
     height: 400px;
     width: 100%;
     box-shadow: 0px 21px 68px -11px rgba(0, 0, 0, 0.75);

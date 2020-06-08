@@ -6,6 +6,13 @@
     background-color: transparent;
 }
 
+.left{
+    float: left;
+    max-width: 50%;
+}
+.right{
+    max-width: 50%;
+}
 
 .photo {
     width: 100%;

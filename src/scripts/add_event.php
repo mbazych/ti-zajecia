@@ -47,7 +47,7 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
         $conn->query($sql);
 
         foreach ($tags as $tag ){
-               $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag_id.")");
+               $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag.")");
         }
 
         header("location: ../pages/event_details.php?id={$event_id}");

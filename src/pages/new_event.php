@@ -166,12 +166,12 @@ if (!isset($_SESSION['logged']['email'])) {
         <button type="submit" class="btn btn-dark col-lg-6 btn-lg" style="margin-left:25%; margin-right:25%; margin-top:10px">Create this event</button>
 
 
-        </div>
-        <script src="../static/js/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
-        <script src="../static/js/chosen.jquery.js" type="text/javascript"></script>
-        <script src="../static/js/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../static/js/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
-      </form>
+    </div>
+    <script src="../static/js/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="../static/js/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../static/js/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+    </form>
     </div>
   </header>
   <!-- Footer-->

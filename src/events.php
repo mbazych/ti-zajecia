@@ -66,11 +66,11 @@
                 <div class="container d-flex col-lg-12 align-items-center flex-row">
                     <div class="row">
                         <!-- <div class=" "> -->
-                        <form action="./scripts/search.php" method="get" id="searchForm" class="input-group">
+                        <form action="./events.php" method="post" id="searchForm" class="input-group">
 
                             <?php
                             require_once("./scripts/connect.php");
-                            $result = $conn->query("SELECT id,categorie FROM categories ORDER BY id DESC");
+                            $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events ORDER BY ID DESC");
                             ?>
                             <select name="category" id="category" class="col-md-11 col-lg-3 mb-12 btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <option value="Select category">Select category</option>
@@ -91,7 +91,7 @@ Category;
                                         <option value={$row['id']}>{$row['city']}</option>
 City;
                                         }
-                                        ?> </select> <input type="text" class="col-md-11 col-lg-3 mb-12 btn" name="x" style="border:1px solid #2c3e50;margin-left:10px" placeholder="Search events...">
+                                        ?> </select> <input type="text" class="col-md-11 col-lg-3 mb-12 btn" name="search" style="border:1px solid #2c3e50;margin-left:10px" placeholder="Search events...">
                                         <button class="col-md-11 col-lg-2 mb-12 glyphicon glyphicon-search btn-default btn takepart-btn" style="color:#2c3e50;margin-left:10px" type="submit">
                                             Submit
                                         </button>
@@ -103,7 +103,18 @@ City;
         </div>
     </section>
     <section>
+        <?php
+        require_once("./scripts/connect.php");
 
+
+        $searchq = $_POST['search'];
+        $categoryq = $_POST['category'];
+        $cityq = $_POST['city'];
+
+        if (isset($_POST['search']) and !empty($_POST['search'])) {
+            echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
+        }
+        ?>
 
 
 
@@ -111,10 +122,12 @@ City;
             <div class="row col-12 col-sm-12 mb-12 col-md-12 col-lg-12">
                 <!-- <div class=" col-sm"> -->
                 <?php
-                require_once("./scripts/connect.php");
-                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events ORDER BY ID DESC");
-                $i = 4;
+                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE name LIKE '%$searchq%' OR description LIKE '%$searchq%'") or die("could not search");
+
                 while ($row = $result->fetch_assoc()) {
+
+
+
 
                     echo "<div class='col col-12 mb-12 xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3' style='margin-bottom:2%'>
                                         <div class='card'>
@@ -130,9 +143,9 @@ City;
                                                             {$row['description']}
                                                         </p>
                                             </div><div class='card-body' style='color:gray;'>
-                                            ".date('g:i a', strtotime($row['date']))."
+                                            " . date('g:i a', strtotime($row['date'])) . "
                                             <br />
-                                            ".date('F j, Y', strtotime($row['date']))."
+                                            " . date('F j, Y', strtotime($row['date'])) . "
                                             </div>
                                         </div>
                                      </div>";

@@ -34,26 +34,23 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
     $host_id = $_SESSION['logged']['user_id'];
     $photo = $_POST['photo'];
     $uploaddir = '../static/img/';
-    $photo2 = $uploaddir . basename($_FILES['photo']['name']);
-    if (move_uploaded_file($_FILES['photo']['tmp_name'], $photo2)) {
-        // echo $name."<br /> ".$description."<br /> ".$city."<br /> ".$address."<br /> ".$date."<br /> ".$categorie."<br /> ".$_FILES['photo']['name']."<br /> ".$host_id;
-        // // echo $name.", ".$description.", ".$city.", ".$address.", ".$date.", ".$categorie.", ".$_FILES['photo']['name'].", ".$host_id;
+    $photo = $uploaddir . basename($_FILES['photo']['name']);
+    if (move_uploaded_file($_FILES['photo']['tmp_name'], $photo)) {
+        
+        $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
+            VALUES ('".$name."', '".$description."', ".$city.", '".$address."', '".$date."', ".$categorie.", '".$_FILES['photo']['name']."', ".$host_id.")";
+        $conn->query($sql);
 
-        // // $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
-        // //     VALUES (?,?,?,?,?,?,?,?,?)";
-        // $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
-        //     VALUES ('".$name."', '".$description."', ".$city.", '".$address."', '".$date."', ".$categorie.", '".$_FILES['photo']['name']."', ".$host_id.")";
-        // $conn->query($sql);
+        $event_id = $conn->insert_id;
 
-        // $event_id = $conn->insert_id;
+        $sql="INSERT INTO `users_events` (`user_id`,event_id) VALUES (".$host_id.",".$event_id.")";
+        $conn->query($sql);
 
-        // $sql="INSERT INTO `users_events` (`user_id`,event_id) VALUES (".$host_id.",".$event_id.")";
-        // $conn->query($sql);
-
-        foreach ($_POST['tags'] as $tag ){
-            //    $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag_id.")");
-            echo " " . $tag;
+        foreach ($tags as $tag ){
+               $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag_id.")");
         }
+
+        header("location: ../pages/event_details.php?id={$event_id}");
     } else {
         $_SESSION['error'] = "Error while saving the file";
     ?>

@@ -145,7 +145,7 @@ if (!isset($_SESSION['logged']['email'])) {
 
 
           <label for="inputTags">Tags</label>
-          <select placeholder="Tags" multiple name="tags" class="chosen-select form-control-lg form-control" id="inputTags">
+          <select placeholder="Tags" multiple name="tags[]" class="chosen-select form-control-lg form-control" id="inputTags">
             <?php
             $zapytanie = "SELECT * FROM `tags`";
             $wpisz = $conn->query($zapytanie);

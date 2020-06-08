@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#contact">Contact</a></li>
                     <?if(!isset($_SESSION['logged']['email'])){?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./login.php">Login</a></li>
@@ -105,25 +105,39 @@ City;
     <section>
 
 
-        <!-- <div class="container d-flex align-items-center flex-column">
-                <div class="col-lg-9 col-lg-push-1 mt-5 mb-5">
-                    
-                    <div class="container d-flex align-items-center flex-row">
-                        <div class="row">
-                            <div class=" col-xl-3">
-                            <?php
-                            //     require_once("./scripts/connect.php");
-                            //     $result = $conn->query("SELECT id,name,description FROM events ORDER BY ID DESC");
 
-                            // while ($row = $result->fetch_assoc()) {
-                            //     echo "<div class='card'><div class='card-header'> {$row['name']}<div class='card-body'>{$row['description']} </div> </div></div>";
-                            // }
+                    
+                    <div class="container">
+                        <div class="row  col-md-12 mb-12 col-lg-12">
+                            <!-- <div class=" col-sm"> -->
+                            <?php
+                                require_once("./scripts/connect.php");
+                                $result = $conn->query("SELECT id,name,photo_path,description FROM events ORDER BY ID DESC");
+                                $i = 4;
+                            while ($row = $result->fetch_assoc()) {
+      
+                                echo "<div class='col col-md-12 mb-12 col-lg-4' >
+                                        <div class='card'>
+                                            <div class='card-header'>
+                                                <img class='card-img-top' src='./static/img/{$row['photo_path']}'>
+                                                    <div class='card-body'>
+                                                        <h5 class='card-title'> 
+                                                            {$row['name']}
+                                                        </h5>
+                                                        <p class='card-text'>
+                                                            {$row['description']}
+                                                        </p>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                     </div>";
+
+                            }
                             ?>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
-                </div>
-            </div> -->
+
     </section>
     <!-- Footer-->
     <footer class="footer text-center">

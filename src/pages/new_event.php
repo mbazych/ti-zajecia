@@ -43,7 +43,7 @@ if (!isset($_SESSION['logged']['email'])) {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../events.php">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
                     <?if(!isset($_SESSION['logged']['email'])){?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="../login.php">Login</a></li>
@@ -107,9 +107,9 @@ if (!isset($_SESSION['logged']['email'])) {
             <input name="address" type="text" class="form-control-lg form-control" id="inputAddress" placeholder="Enter address">
           </div>
           <div class="form-group form-group-lg">
-            <label for="inputcategorie">City</label>
+            <label for="inputcategorie">Category</label>
             <select name="categorie" type="text" class="form-control-lg form-control" id="inputCategorie" placeholder="Categorie">
-              <option selected disabled>Categorie</option>
+              <option selected disabled>Category</option>
               <?php
               $zapytanie = "SELECT * FROM `categories`";
               $wpisz = $conn->query($zapytanie);

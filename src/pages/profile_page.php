@@ -108,11 +108,11 @@ $response2 = $conn->query($sql);
     <section class="page-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-11 ml-auto col-lg-3 mb-12 info text-white" style="text-align: center; max-height:700px; height:400px;">
+                <div class="col-md-11 ml-auto col-lg-3 mb-12 info text-white" style="text-align: center; max-height:700px; height:450px;">
                     <div class="row" style="text-align: left;">
                         <div class="col-md-11 col-lg-11 mb-12 text-center">
-                            <?echo "<img style='text-align:center; object-fit:cover; border-radius:10px' src='../static/img/{$person['photo_path']}'/>" ?>
-                            <div style="text-align:left;">
+                            <?echo "<img style='text-align:center; height:200px; width:200px; object-fit:cover; border-radius:10px' src='../static/img/{$person['photo_path']}'/>" ?>
+                            <div style="text-align:left;"><br />
                                 <div class="lead">
                                     Your place:<br />
                                 </div>
@@ -135,7 +135,7 @@ $response2 = $conn->query($sql);
                         while($event = $response2->fetch_assoc()){
                             echo "<div class='participants d-flex'>
                                     <div class='person-img-circle p-2'>
-                                        <img src='../static/img/".$event['photo_path']."' alt='".$event['photo_path']."' class='img-size-50'/>
+                                        <img src='../static/img/".$event['photo_path']."' alt='".$event['photo_path']."'/>
                                     </div>
                                     <div class='participant p-2'> "
                                     .$event['name']."

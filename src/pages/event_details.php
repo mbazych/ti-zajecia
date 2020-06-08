@@ -22,7 +22,7 @@ if ($response->num_rows == 0) {
     FROM users_events, events, users 
     WHERE users_events.user_id = users.id
         AND users_events.event_id = events.id
-        AND users_events.event_id = " . $id;
+        AND users_events.event_id = " . $id." ORDER BY timestamp";
     $response2 = $conn->query($sql);
     $response4 = $conn->query($sql);
     $response3 = $conn->query("SELECT tags.*

@@ -113,8 +113,8 @@ City;
         if(isset($_POST['button']))
         {
             $sql .= " WHERE (`name` LIKE '%" . $_POST['search'] . "%'OR `description` LIKE '%" . $_POST['search'] . "%') ";
-            if ($_POST['category'] != NULL && !empty($_POST['category'])){ $sql .= "AND `categorie_id` = " . $_POST['category'];}
-            if ($_POST['city'] != NULL && !empty($_POST['city'])){ $sql .= "AND `city_id` = " . $_POST['city'];}
+            if ($_POST['category'] != NULL && !empty($_POST['category'])){ $sql .= " AND `categorie_id` = " . $_POST['category'];}
+            if ($_POST['city'] != NULL && !empty($_POST['city'])){ $sql .= " AND `city_id` = " . $_POST['city'];}
         }
         $result = $conn->query($sql);
 

@@ -14,7 +14,9 @@ if (!isset($_SESSION['logged']['email'])) {
   <meta name="author" content="" />
   <title>EVENTANO</title>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" href="../static/js/docsupport/style.css">
+  <link rel="stylesheet" href="../static/js/docsupport/prism.css">
+  <link rel="stylesheet" href="../static/js/chosen.css">
   <!-- Favicon-->
   <link rel="icon" type="image/x-icon" href="./static/assets/img/favicon.ico" />
   <!-- Font Awesome icons (free version)-->
@@ -30,6 +32,13 @@ if (!isset($_SESSION['logged']['email'])) {
       document.getElementById('textarea').onkeyup = function() {
         document.getElementById('count').innerHTML = "Characters left: " + (500 - this.value.length);
       }
+    });
+
+    $(function() {
+      $(".chosen-select").chosen({
+        no_results_text: "Oops, nothing found!"
+      });
+
     });
   </script>
 </head>
@@ -136,7 +145,7 @@ if (!isset($_SESSION['logged']['email'])) {
 
 
           <label for="inputTags">Tags</label>
-          <select name="tags" class="form-control-lg form-control" id="inputTags" placeholder="Tags" multiple>
+          <select placeholder="Tags" multiple name="tags[]" class="chosen-select form-control-lg form-control" id="inputTags">
             <?php
             $zapytanie = "SELECT * FROM `tags`";
             $wpisz = $conn->query($zapytanie);
@@ -145,7 +154,13 @@ if (!isset($_SESSION['logged']['email'])) {
                    <option value={$rekord['id']}>{$rekord['tag']}</option>
             CATEGORIE;
             }
-            ?></select>
+            ?>
+          </select>
+
+  <script src="../static/js/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script src="../static/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="../static/js/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../static/js/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
           <br />
           <label for="inputPhoto">Send this file: </label><br />
           <input type="hidden" name="MAX_FILE_SIZE" value="512000" />

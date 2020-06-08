@@ -28,35 +28,37 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
     $city = $_POST['city'];
     $address = $_POST['address'];
     $categorie = $_POST['categorie'];
-    $date = $_POST['date'];
+    $date = date("Y-m-d H:m:s", strtotime($_POST['date']));
     $description = $_POST['description'];
     $tags = $_POST['tags'];
     $host_id = $_SESSION['logged']['user_id'];
     $photo = $_POST['photo'];
     $uploaddir = '../static/img/';
     $photo = $uploaddir . basename($_FILES['photo']['name']);
-    $photo2 = $uploaddir . basename($_FILES['photo']['name']);
-    if (move_uploaded_file($_FILES['photo']['tmp_name'], $photo2)) {
-
+    if (move_uploaded_file($_FILES['photo']['tmp_name'], $photo)) {
+        
         $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
-            VALUES (?,?,?,?,?,?,?,?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssissisi', $name, $description, $city, $address, $date, $categorie, $_FILE['photo']['name'], $host_id);
-        $i = $stmt->execute();
-        if($i){
-            echo $conn->insert_id;
-        }
-        else
-            echo $conn->errno;
+            VALUES ('".$name."', '".$description."', ".$city.", '".$address."', '".$date."', ".$categorie.", '".$_FILES['photo']['name']."', ".$host_id.")";
+        $conn->query($sql);
 
+        $event_id = $conn->insert_id;
+
+        $sql="INSERT INTO `users_events` (`user_id`,event_id) VALUES (".$host_id.",".$event_id.")";
+        $conn->query($sql);
+
+        foreach ($tags as $tag ){
+               $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag.")");
+        }
+
+        header("location: ../pages/event_details.php?id={$event_id}");
     } else {
         $_SESSION['error'] = "Error while saving the file";
-        ?>
+    ?>
         <script>
             window.history.back();
         </script>
     <?php
-    exit();
+        exit();
     }
 } else {
     $_SESSION['error'] = "Wypełnij wszystkie pola";

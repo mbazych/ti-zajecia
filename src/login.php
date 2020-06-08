@@ -83,10 +83,6 @@ session_start();
                     <label for="inputPassword">Password</label>
                     <input name="pass" type="password" class="form-control-lg form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter password">
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberCheck">
-                    <label class="form-check-label" for="rememberCheck">Remember me</label>
-                </div>
                 <button type="submit" class="btn btn-dark  btn-lg">Login</button>
 
 

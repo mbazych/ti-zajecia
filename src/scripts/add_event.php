@@ -32,22 +32,31 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
     $description = $_POST['description'];
     $tags = $_POST['tags'];
     $host_id = $_SESSION['logged']['user_id'];
-    $photo = $_POST['photo'];
     $uploaddir = '../static/img/';
-    $photo = $uploaddir . basename($_FILES['photo']['name']);
+    $photoname = $_FILES['photo']['name'];
+    $photo = $uploaddir . basename($photoname);
+    if (file_exists($photo)) {
+        $photoname = "(2)" . $photoname;
+        $photo = $uploaddir . basename($photoname);
+        if (file_exists($photo)) {
+            $photoname = "(2)" . $photoname;
+            $photo = $uploaddir . basename($photoname);
+        }
+    }
+
+
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $photo)) {
-        
         $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
-            VALUES ('".$name."', '".$description."', ".$city.", '".$address."', '".$date."', ".$categorie.", '".$_FILES['photo']['name']."', ".$host_id.")";
+            VALUES ('" . $name . "', '" . $description . "', " . $city . ", '" . $address . "', '" . $date . "', " . $categorie . ", '" . $photoname . "', " . $host_id . ")";
         $conn->query($sql);
 
         $event_id = $conn->insert_id;
 
-        $sql="INSERT INTO `users_events` (`user_id`,event_id) VALUES (".$host_id.",".$event_id.")";
+        $sql = "INSERT INTO `users_events` (`user_id`,event_id) VALUES (" . $host_id . "," . $event_id . ")";
         $conn->query($sql);
 
-        foreach ($tags as $tag ){
-               $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(".$event_id.", ".$tag.")");
+        foreach ($tags as $tag) {
+            $conn->query("INSERT INTO `events_tags`(`event_id`, `tag_id`) VALUES(" . $event_id . ", " . $tag . ")");
         }
 
         header("location: ../pages/event_details.php?id={$event_id}");

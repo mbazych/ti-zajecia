@@ -14,7 +14,6 @@ if (!isset($_SESSION['logged']['email'])) {
   <meta name="author" content="" />
   <title>EVENTANO</title>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="../static/js/docsupport/style.css">
   <link rel="stylesheet" href="../static/js/docsupport/prism.css">
   <link rel="stylesheet" href="../static/js/chosen.css">
   <!-- Favicon-->
@@ -46,26 +45,26 @@ if (!isset($_SESSION['logged']['email'])) {
 <body id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
-        <div class="container">
+    <div class="container">
 
-            <a class="navbar-brand js-scroll-trigger" href="./#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../events.php">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
-                    <?if(!isset($_SESSION['logged']['email'])){?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="../login.php">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../register.php">Register</a></li>
-                    <?}else{?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./new_event.php">New event</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../scripts/logout.php">Log out</a></li>
+      <a class="navbar-brand js-scroll-trigger" href="./#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../events.php">Events</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
+          <?if(!isset($_SESSION['logged']['email'])){?>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="../login.php">Login</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../register.php">Register</a></li>
+          <?}else{?>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./new_event.php">New event</a></li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../scripts/logout.php">Log out</a></li>
 
-                    <?}?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          <?}?>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <!-- Masthead-->
   <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
@@ -89,7 +88,7 @@ if (!isset($_SESSION['logged']['email'])) {
         unset($_SESSION['error']);
       }
       ?>
-      <form enctype="multipart/form-data" id="form" action="../scripts/add_event.php" class="col-md-6 col-lg-12 mb-5 row text-center" method="post">
+      <form enctype="multipart/form-data" id="form" action="../scripts/add_event.php" class="col-md-12 col-lg-12 mb-5 row text-center" method="post">
         <div class="col-lg-6">
           <div class="form-group form-group-lg">
             <label for="inputName">Name</label>
@@ -139,7 +138,7 @@ if (!isset($_SESSION['logged']['email'])) {
         <div class="col-lg-6">
           <label for="textarea">Description</label>
 
-          <textarea name="description" style="resize:none" id="textarea" form="form" rows="4" placeholder="description" maxlength="500" class="form-control-lg form-control"></textarea>
+          <textarea name="description" style="resize:none" id="textarea" form="form" rows="6" placeholder="description" maxlength="500" class="form-control-lg form-control"></textarea>
           <div id="count" style="text-align: right; padding-right:10px;">Characters left: 500</div>
 
 
@@ -156,21 +155,23 @@ if (!isset($_SESSION['logged']['email'])) {
             }
             ?>
           </select>
-
-  <script src="../static/js/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
-  <script src="../static/js/chosen.jquery.js" type="text/javascript"></script>
-  <script src="../static/js/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-  <script src="../static/js/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
           <br />
+          <br />
+
+
           <label for="inputPhoto">Send this file: </label><br />
           <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
           <input name="photo" accept="image/*" style="background-color:transparent;border:none; border-bottom:1px solid #ccc; color:white" class="form-control-lg form-control" id="inputPhoto" type="file" />
         </div>
-        <button type="submit" class="btn btn-dark col-lg-12 btn-lg">Register</button>
+        <button type="submit" class="btn btn-dark col-lg-12 btn-lg">Create this event</button>
 
 
-    </div>
-    </form>
+        </div>
+        <script src="../static/js/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="../static/js/chosen.jquery.js" type="text/javascript"></script>
+        <script src="../static/js/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../static/js/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+      </form>
     </div>
   </header>
   <!-- Footer-->

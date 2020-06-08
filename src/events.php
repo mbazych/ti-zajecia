@@ -108,7 +108,7 @@ City;
 
                     
                     <div class="container">
-                        <div class="row  col-md-12 mb-12 col-lg-12">
+                        <div class="row col-md-12 mb-12 col-lg-12">
                             <!-- <div class=" col-sm"> -->
                             <?php
                                 require_once("./scripts/connect.php");
@@ -116,7 +116,7 @@ City;
                                 $i = 4;
                             while ($row = $result->fetch_assoc()) {
       
-                                echo "<div class='col col-md-12 mb-12 col-lg-4' >
+                                echo "<div class='col col-md-12 mb-12 col-lg-3' >
                                         <div class='card'>
                                             <div class='card-header'>
                                                 <img class='card-img-top' src='./static/img/{$row['photo_path']}'>

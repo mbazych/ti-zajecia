@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
         <div class="container">
 
-            <a class="navbar-brand js-scroll-trigger" href="./index.php">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <a class="navbar-brand js-scroll-trigger" href="./#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
@@ -70,7 +70,7 @@
 
                             <?php
                             require_once("./scripts/connect.php");
-                            $result = $conn->query("SELECT id,categorie FROM categories ORDER BY ID DESC");
+                            $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events ORDER BY ID DESC");
                             ?>
                             <select name="category" id="category" class="col-md-11 col-lg-3 mb-12 btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <option value="Select category">Select category</option>
@@ -103,18 +103,18 @@ City;
         </div>
     </section>
     <section>
-        <?php
-        require_once("./scripts/connect.php");
+    <?php
+                require_once("./scripts/connect.php");
 
 
-        $searchq = $_POST['search'];
-        $categoryq = $_POST['category'];
-        $cityq = $_POST['city'];
+                $searchq = $_POST['search'];
+                $categoryq = $_POST['category'];
+                $cityq = $_POST['city'];
 
-        if (isset($_POST['search']) and !empty($_POST['search'])) {
-            echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
-        }
-        ?>
+                if(isset($_POST['search']) and !empty($_POST['search'])) {
+                    echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
+                }
+                ?>
 
 
 
@@ -122,15 +122,13 @@ City;
             <div class="row col-12 col-sm-12 mb-12 col-md-12 col-lg-12">
                 <!-- <div class=" col-sm"> -->
                 <?php
+                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE name LIKE %searchq%  ORDER BY ID DESC");
+                
+                while($row = $result->fetch_assoc()) {
 
-                $categoryq = intval($categoryq);
-                $result = $conn->query("SELECT id,name,categorie_id,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE `name` LIKE '%".$searchq."%' OR `description` LIKE '%".$searchq."%' OR categorie_id = ".$categoryq."") or die("Error");
-
-                while ($row = $result->fetch_assoc()) {
-
-
-
-
+                    
+                    
+          
                     echo "<div class='col col-12 mb-12 xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3' style='margin-bottom:2%'>
                                         <div class='card'>
                                             <div class='card-header' style='padding:0'>
@@ -145,17 +143,19 @@ City;
                                                             {$row['description']}
                                                         </p>
                                             </div><div class='card-body' style='color:gray;'>
-                                            " . date('g:i a', strtotime($row['date'])) . "
+                                            ".date('g:i a', strtotime($row['date']))."
                                             <br />
-                                            " . date('F j, Y', strtotime($row['date'])) . "
+                                            ".date('F j, Y', strtotime($row['date']))."
                                             </div>
                                         </div>
                                      </div>";
-                }
-                ?>
-                <!-- </div> -->
-            </div>
+    
+                    
+            }
+            ?>
+            <!-- </div> -->
         </div>
+    </div>
 
     </section>
     <!-- Footer-->

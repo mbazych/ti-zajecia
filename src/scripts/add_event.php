@@ -53,8 +53,8 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
     <?php
             exit();
         }
-    }else{
-        $photoname="default_photo_event.png";
+    } else {
+        $photoname = "default_photo_event.png";
     }
 
     $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)

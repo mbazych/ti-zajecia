@@ -31,3 +31,13 @@ services:
       - MYSQL_ROOT_PASSWORD=docker
     volumes:
       - ./database/data.sql:/docker-entrypoint-initdb.d/data.sql
+  phpmyadmin:
+    depends_on: 
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:8080'
+    environment: 
+      PMA_HOST: eventano
+      MYSQL_ROOT_PASSWORD: docker

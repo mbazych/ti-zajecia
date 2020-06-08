@@ -30,7 +30,7 @@
             <a class="navbar-brand js-scroll-trigger" href="./#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#contact">Contact</a></li>
                     <?if(!isset($_SESSION['logged']['email'])){?>
@@ -74,10 +74,10 @@
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-6 col-lg-4 mb-5">
                             <div class="card" style="border:none; border-bottom: 1px solid gray; border-top: 1px solid gray;  ">
-                                <img style="background-color:#FFDAC1 ;height:240px; object-fit:cover" class="card-img-top" src="./static/img/'.$row['photo_path_categories'].'"/>
+                                <img style="background-color:#FFDAC1 ;height:240px; object-fit:cover" class="card-img-top" src="./static/img/' . $row['photo_path_categories'] . '"/>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        '.$row['categorie'].'
+                                        ' . $row['categorie'] . '
                                     </h5>
                                 </div>
                             </div>

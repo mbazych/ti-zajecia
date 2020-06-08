@@ -103,18 +103,18 @@ City;
         </div>
     </section>
     <section>
-    <?php
-                require_once("./scripts/connect.php");
+        <?php
+        require_once("./scripts/connect.php");
 
 
-                $searchq = $_POST['search'];
-                $categoryq = $_POST['category'];
-                $cityq = $_POST['city'];
+        $searchq = $_POST['search'];
+        $categoryq = $_POST['category'];
+        $cityq = $_POST['city'];
 
-                if(isset($_POST['search']) and !empty($_POST['search'])) {
-                    echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
-                }
-                ?>
+        if (isset($_POST['search']) and !empty($_POST['search'])) {
+            echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
+        }
+        ?>
 
 
 
@@ -122,13 +122,13 @@ City;
             <div class="row col-12 col-sm-12 mb-12 col-md-12 col-lg-12">
                 <!-- <div class=" col-sm"> -->
                 <?php
-                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE name LIKE %searchq% OR description LIKE %searchq% ORDER BY ID DESC");
-                
-                while($row = $result->fetch_assoc()) {
+                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE name LIKE '%$searchq%' OR description LIKE '%$searchq%'") or die("could not search");
 
-                    
-                    
-          
+                while ($row = $result->fetch_assoc()) {
+
+
+
+
                     echo "<div class='col col-12 mb-12 xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3' style='margin-bottom:2%'>
                                         <div class='card'>
                                             <div class='card-header' style='padding:0'>
@@ -143,19 +143,17 @@ City;
                                                             {$row['description']}
                                                         </p>
                                             </div><div class='card-body' style='color:gray;'>
-                                            ".date('g:i a', strtotime($row['date']))."
+                                            " . date('g:i a', strtotime($row['date'])) . "
                                             <br />
-                                            ".date('F j, Y', strtotime($row['date']))."
+                                            " . date('F j, Y', strtotime($row['date'])) . "
                                             </div>
                                         </div>
                                      </div>";
-    
-                    
-            }
-            ?>
-            <!-- </div> -->
+                }
+                ?>
+                <!-- </div> -->
+            </div>
         </div>
-    </div>
 
     </section>
     <!-- Footer-->

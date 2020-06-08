@@ -70,7 +70,7 @@
 
                 <div class="container col-lg-12 d-flex justify-content-center" style="margin:3% 0%; padding:0 10%;">
                         <!-- <div class=" "> -->
-                        <form action="./events.php" method="post" id="searchForm" class="input-group">
+                        <form action="./events.php" method="POST" id="searchForm" class="input-group">
 
                             <?php
                             require_once("./scripts/connect.php");
@@ -97,7 +97,7 @@ Category;
 City;
                                         }
                                         ?> </select> <input type="text" class="col-md-11 col-lg-5 mb-12" name="search" style="border-radius:7px;border:1px solid #2c3e50;margin-left:10px" placeholder="Search events...">
-                                        <button class="col-md-11 col-lg-2 mb-12 glyphicon glyphicon-search btn-default btn takepart-btn" style="color:#2c3e50;margin-left:10px" type="submit">
+                                        <button name="button" class="col-md-11 col-lg-2 mb-12 glyphicon glyphicon-search btn-default btn takepart-btn" style="color:#2c3e50;margin-left:10px" type="submit">
                                             Submit
                                         </button>
                         </form><!-- end form -->
@@ -108,33 +108,29 @@ City;
     <section>
         <?php
         require_once("./scripts/connect.php");
-
-
-        $searchq = $_POST['search'];
-        $categoryq = $_POST['category'];
-
-        $cityq = $_POST['city'];
+        $sql = "SELECT id,`name`,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description`
+        FROM events";
+        if(isset($_POST['button']))
+        {
+            $sql .= " WHERE (`name` LIKE '%" . $_POST['search'] . "%'OR `description` LIKE '%" . $_POST['search'] . "%') ";
+            if ($_POST['category'] != NULL && !empty($_POST['category'])){ $sql .= "AND `categorie_id` = " . $_POST['category'];}
+            if ($_POST['city'] != NULL && !empty($_POST['city'])){ $sql .= "AND `city_id` = " . $_POST['city'];}
+        }
+        $result = $conn->query($sql);
 
         if (isset($_POST['search']) and !empty($_POST['search'])) {
-            echo "<h3 class='text-center text'>You searched for $searchq, here are your results:</h3></br>";
+            echo "<h3 class='text-center text'>You searched for ".$_POST['search'].", here are your results:</h3></br>";
         }
         ?>
-
-
-
         <div class="container">
             <div class="row col-12 col-sm-12 mb-12 col-md-12 col-lg-12 text-center">
                 <!-- <div class=" col-sm"> -->
                 <?php
 
-                if (!empty($categoryq)) $categoryq = "AND `categorie_id` = " . $categoryq;
-                else $categoryq = "";
-                if (!empty($cityq)) $cityq = "AND `city_id` = " . $cityq;
-                else $categoryq = "";
-                $result = $conn->query("SELECT id,`name`,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description`
-                                         FROM events
-                                        WHERE (`name` LIKE '%" . $searchq . "%'
-                                            OR `description` LIKE '%" . $searchq . "%') ".$categoryq." ".$cityq);
+
+
+
+                
                 if($result->num_rows==0)
                 echo "<div class='col-lg-12' style='margin:20% 0; color:red'><h1> No Results <h1></div>";
 

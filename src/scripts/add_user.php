@@ -26,14 +26,40 @@
             $pass=$_POST['pass'];
             $city=$_POST['city'];
             $birthday=$_POST['birthday'];
-            $sql= "INSERT INTO `users`(`name`, `surname`, `email`, `password`, `city_id`, `birthday`)
-            VALUES (?,?,?,?,?,?)";
+            $photoname = $_FILES['photo']['name'];
+            if ($photoname != '') {
+                $uploaddir = '../static/img/';
+                $photo = $uploaddir . basename($photoname);
+                if (file_exists($photo)) {
+                    $photoname = "(2)" . $photoname;
+                    $photo = $uploaddir . basename($photoname);
+                    if (file_exists($photo)) {
+                        $photoname = "(2)" . $photoname;
+                        $photo = $uploaddir . basename($photoname);
+                    }
+                }
+                if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photo)) {
+                    $_SESSION['error'] = "Error while saving the file";
+                ?>
+                    <script>
+                        window.history.back();
+                    </script>
+            <?php
+                    exit();
+                }
+            }else{
+                $photoname="default_photo.png";
+            }
+
+            $sql= "INSERT INTO `users`(`name`, `surname`, `email`, `password`, `city_id`, `birthday`, `photo_path`)
+            VALUES (?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ssssis',$name,$surname,$email,$pass, $city, $birthday);
+            $stmt->bind_param('ssssiss',$name,$surname,$email,$pass, $city, $birthday, $photoname);
             $i=$stmt->execute();
             if($i){
+                $_SESSION['info']="Now you can log in";
+                header("location: ../login.php");
                 exit();
-                header("location: ../index.php");
             }else{
 
                  $zapytanie = "SELECT * FROM `users` WHERE email=?";
@@ -46,10 +72,15 @@
                      $count++;
                  }
                  if($count>0)
-                     $_SESSION['error']="Email juz istnieje w bazie";
+                     $_SESSION['error']="Account with this email already exsists";
                  else
-                     $_SESSION['error']= 'Cos poszlo nie tak';
-                header("location: ../register.php");
+                     $_SESSION['error']= 'Something went wrong';
+                     ?>
+                     <script>
+                         window.history.back();
+                     </script>
+             <?php
+                
             }
         
         

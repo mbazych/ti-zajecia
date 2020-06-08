@@ -159,11 +159,11 @@ if (!isset($_SESSION['logged']['email'])) {
           <br />
 
 
-          <label for="inputPhoto">Send this file: </label><br />
+          <label for="inputPhoto">Select event photo </label><br />
           <input type="hidden" name="MAX_FILE_SIZE" value="512000" />
           <input name="photo" accept="image/*" style="background-color:transparent;border:none; border-bottom:1px solid #ccc; color:white" class="form-control-lg form-control" id="inputPhoto" type="file" />
         </div>
-        <button type="submit" class="btn btn-dark col-lg-12 btn-lg">Create this event</button>
+        <button type="submit" class="btn btn-dark col-lg-6 btn-lg" style="margin-left:25%; margin-right:25%; margin-top:10px">Create this event</button>
 
 
         </div>

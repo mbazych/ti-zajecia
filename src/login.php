@@ -53,6 +53,17 @@ session_start();
                         ';
                 unset($_SESSION['error']);
             }
+            if (isset($_SESSION['info'])) {
+                echo '<div class="col-md1">
+                          <div class="card">
+                            <div class="text-center card-header card-text text-secondary">
+                            ' . $_SESSION['info'] . '
+                            </div>
+                          </div>
+                        </div>
+                        ';
+                unset($_SESSION['info']);
+            }
             ?>
             <h1 class="masthead-heading text-uppercase mb-0">EVENTANO</h1>
             <!-- Icon Divider-->

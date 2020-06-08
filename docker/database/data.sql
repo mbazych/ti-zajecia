@@ -1163,7 +1163,7 @@ CREATE TABLE `users` (
   `surname` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `password` varchar(120) NOT NULL,
-  `photo_path` varchar(30) NOT NULL DEFAULT 'default_photo.png',
+  `photo_path` varchar(100) NOT NULL DEFAULT 'default_photo.png',
   `city_id` int(10) UNSIGNED NOT NULL,
   `birthday` date NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp()

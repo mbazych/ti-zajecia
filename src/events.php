@@ -70,7 +70,7 @@
 
                             <?php
                             require_once("./scripts/connect.php");
-                            $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events ORDER BY ID DESC");
+                            $result = $conn->query("SELECT id,categorie FROM categories ORDER BY ID DESC");
                             ?>
                             <select name="category" id="category" class="col-md-11 col-lg-3 mb-12 btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <option value="Select category">Select category</option>
@@ -122,7 +122,9 @@ City;
             <div class="row col-12 col-sm-12 mb-12 col-md-12 col-lg-12">
                 <!-- <div class=" col-sm"> -->
                 <?php
-                $result = $conn->query("SELECT id,name,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE name LIKE '%$searchq%' OR description LIKE '%$searchq%'") or die("could not search");
+
+                $categoryq = intval($categoryq);
+                $result = $conn->query("SELECT id,name,categorie_id,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description` FROM events WHERE `name` LIKE '%".$searchq."%' OR `description` LIKE '%".$searchq."%' OR categorie_id = ".$categoryq."") or die("Error");
 
                 while ($row = $result->fetch_assoc()) {
 

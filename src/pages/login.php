@@ -10,34 +10,12 @@ session_start();
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>EVENTANO</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="./static/assets/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="./static/css/pageStyle.css" rel="stylesheet" />
-    <link href="static/css/styles.css" rel="stylesheet" />
+    <? require_once './layouts/head.html'?>
 </head>
 
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="./#page-top">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./index.php#contact">Contact</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./login.php">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./register.php">Register</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?require_once './layouts/navbar.php'?>
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
@@ -73,7 +51,7 @@ session_start();
                 <div class="divider-custom-line"></div>
             </div>
 
-            <form action="./scripts/login_user.php" method="post">
+            <form action="../scripts/login_user.php" method="post">
 
                 <div class="form-group form-group-lg">
                     <label for="inputEmail">Email address</label>
@@ -107,7 +85,7 @@ session_start();
                 <div class="col-lg-6">
                     <h4 class="text-uppercase mb-4">About EVENTANO</h4>
                     <p class="lead mb-0">EVENTANO is a place where you can find all the events you need for you to enjoy or learn from.</p>
-                    <p>Website created by <a href="https://www.linkedin.com/in/mbazych/">Michał Bazych</a> and <a href="https://www.linkedin.com/in/mateusz-czarczy%C5%84ski-1263a5173/">Mateusz Czarczyński</a></p>
+                    <p>Website created by <a target="blank_" href="https://www.linkedin.com/in/mbazych/">Michał Bazych</a> and <a target="blank_" href="https://www.linkedin.com/in/mateusz-czarczy%C5%84ski-1263a5173/">Mateusz Czarczyński</a></p>
                 </div>
             </div>
         </div>
@@ -126,10 +104,10 @@ session_start();
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
-    <script src="./static/assets/mail/jqBootstrapValidation.js"></script>
-    <script src="./static/assets/mail/contact_me.js"></script>
+    <script src="../static/assets/mail/jqBootstrapValidation.js"></script>
+    <script src="../static/assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="static/js/scripts.js"></script>
+    <script src="../static/js/scripts.js"></script>
 </body>
 
 </html>

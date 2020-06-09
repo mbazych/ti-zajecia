@@ -65,15 +65,15 @@ if ($response->num_rows == 0) {
 </head>
 <script>
     function shareClick() {
-        if (confirm("Copy url to clickboard?")) {
             var dummy = document.createElement("textarea");
             document.body.appendChild(dummy);
             dummy.value = window.location.href;
             dummy.select();
             document.execCommand("copy");
             document.body.removeChild(dummy);
-            alert("Copied!");
-        }
+
+            document.getElementsById('share-btn').innerHTML = "Copied";
+
     }
 </script>
 
@@ -153,7 +153,7 @@ if ($response->num_rows == 0) {
                     ul.
                     <?echo $item['address'] ?><br />
 
-                    <button class="btn btn-default btn-sm share-btn" onclick="shareClick()">
+                    <button class="btn btn-default btn-sm share-btn" id="share-btn" onclick="shareClick()">
                         <i class="fa fa-share"></i> Share</button>
                 </h3>
             </div>

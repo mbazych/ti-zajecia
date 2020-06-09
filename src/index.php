@@ -41,12 +41,12 @@
                     ?>
 
 
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./pages/events.php">Events</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#categories">Categories</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#contact">Contact</a></li>
                     <?if(!isset($_SESSION['logged']['email'])){?>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./login.php">Login</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./register.php">Register</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./pages/login.php">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./pages/register.php">Register</a></li>
                     <?}else{?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./pages/new_event.php">New event</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./scripts/logout.php">Log out</a></li>
@@ -70,7 +70,7 @@
             <p class="masthead-subheading font-weight-light mb-0">Your desired events in one place.</p>
         </div>
     </header>
-    <section class="page-section portfolio" id="categories">
+    <section class="page-section" id="categories">
         <div class="container">
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Categories</h2>
             <div class="divider-custom">
@@ -84,7 +84,7 @@
                 $result = $conn->query("SELECT * FROM `categories` ORDER BY id DESC");
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-6 col-lg-4 mb-5">
-                            <a href=./events.php?category='.$row['id'].'>
+                            <a href=./pages/events.php?category='.$row['id'].'>
                             <div class="card" style="border:none; border-bottom: 1px solid gray; border-top: 1px solid gray;  ">
                                 <img style="background-color:#FFDAC1 ;height:240px; object-fit:cover" class="card-img-top" src="./static/img/' . $row['photo_path_categories'] . '"/>
                                 <div class="card-body">

@@ -10,34 +10,13 @@ session_start();
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>EVENTANO</title>
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="./static/assets/img/favicon.ico" />
-  <!-- Font Awesome icons (free version)-->
-  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-  <!-- Google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="static/css/styles.css" rel="stylesheet" />
-  <link href="./static/css/pageStyle.css" rel="stylesheet" />
+  <? require_once './layouts/head.html'?>
 </head>
 
 <body id="page-top">
  <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="./index.php"><?php echo 'EVENTANO' ?></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./events.php">Events</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./#contact">Contact</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./login.php">Login</a></li>
-            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="./register.php">Register</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+ <?require_once './layouts/navbar.php'?>
+
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
@@ -62,7 +41,7 @@ session_start();
           unset($_SESSION['error']);
         }
         ?>
-        <form enctype="multipart/form-data" action="./scripts/add_user.php" method="post" class="col-md-12 col-lg-12 mb-5 row text-center">
+        <form enctype="multipart/form-data" action="../scripts/add_user.php" method="post" class="col-md-12 col-lg-12 mb-5 row text-center">
           <div class="col-lg-6">
             <div class="form-group form-group-lg">
               <label for="inputEmail">Email address</label>
@@ -81,7 +60,7 @@ session_start();
               <select name="city" type="text" class="form-control-lg form-control" id="inputCity" placeholder="City">
                 <option selected disabled>City</option>
                 <?php
-                require_once('./scripts/connect.php');
+                require_once('../scripts/connect.php');
                 $zapytanie = "SELECT * FROM `city`";
                 $wpisz = $conn->query($zapytanie);
                 while ($rekord = $wpisz->fetch_assoc()) {
@@ -154,10 +133,10 @@ session_start();
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
-    <script src="./static/assets/mail/jqBootstrapValidation.js"></script>
-    <script src="./static/assets/mail/contact_me.js"></script>
+    <script src="../static/assets/mail/jqBootstrapValidation.js"></script>
+    <script src="../static/assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="static/js/scripts.js"></script>
+    <script src="../static/js/scripts.js"></script>
 </body>
 
 </html>

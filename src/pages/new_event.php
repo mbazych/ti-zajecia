@@ -16,16 +16,7 @@ if (!isset($_SESSION['logged']['email'])) {
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="../static/js/docsupport/prism.css">
   <link rel="stylesheet" href="../static/js/chosen.css">
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="./static/assets/img/favicon.ico" />
-  <!-- Font Awesome icons (free version)-->
-  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-  <!-- Google fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="../static/css/styles.css" rel="stylesheet" />
-  <link href="../static/css/pageStyle.css" rel="stylesheet" />
+  <? require_once './layouts/head.html'?>
   <script type="text/javascript">
     $(function() {
       document.getElementById('textarea').onkeyup = function() {
@@ -44,34 +35,8 @@ if (!isset($_SESSION['logged']['email'])) {
 
 <body id="page-top">
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
-    <div class="container">
+  <?require_once './layouts/navbar.php'?>
 
-      <a class="navbar-brand js-scroll-trigger" href="../index.php">EVENTANO</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-        <?
-                    if(isset($_SESSION['logged']['email'])){
-                    ?>
-                    <li class="nav-item mx-0 mx-lg-1"><a style="padding:0px !important;" class="nav-link py-3 px-0 px-lg-3 rounded" href="pages/profile_page.php"><i style="font-size:3.5rem;" class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-                    <?
-                    }
-                    ?>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../events.php">Events</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#categories">Categories</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../#contact">Contact</a></li>
-          <?if(!isset($_SESSION['logged']['email'])){?>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="../login.php">Login</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../register.php">Register</a></li>
-          <?}else{?>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="border: 1px solid white" href="./new_event.php">New event</a></li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" style="color:#1abc9c" href="../scripts/logout.php">Log out</a></li>
-
-          <?}?>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <!-- Masthead-->
   <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
@@ -151,7 +116,7 @@ if (!isset($_SESSION['logged']['email'])) {
 
 
           <label for="inputTags">Tags</label>
-          <select placeholder="Tags" multiple name="tags[]" class="chosen-select form-control-lg form-control" id="inputTags">
+          <select data-placeholder="Select tags to your event" multiple name="tags[]" class="chosen-select form-control-lg form-control" id="inputTags">
             <?php
             $zapytanie = "SELECT * FROM `tags`";
             $wpisz = $conn->query($zapytanie);

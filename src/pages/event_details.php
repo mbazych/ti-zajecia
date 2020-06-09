@@ -62,20 +62,19 @@ if ($response->num_rows == 0) {
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../static/css/styles.css" rel="stylesheet" />
     <link href="../static/css/pageStyle.css" rel="stylesheet" />
-</head>
-<script>
-    function shareClick() {
+    <script>
+        function shareClick() {
             var dummy = document.createElement("textarea");
             document.body.appendChild(dummy);
             dummy.value = window.location.href;
             dummy.select();
             document.execCommand("copy");
             document.body.removeChild(dummy);
+            document.getElementById('share-btn').innerHTML = "Copied";
 
-            document.getElementsById('share-btn').innerHTML = "Copied";
-
-    }
-</script>
+        }
+    </script>
+</head>
 
 <body id="page-top">
     <!-- Navigation-->
@@ -114,7 +113,7 @@ if ($response->num_rows == 0) {
             <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <?
+                    <?
                     if(isset($_SESSION['logged']['email'])){
                     ?>
                     <li class="nav-item mx-0 mx-lg-1"><a style="padding:0px !important;" class="nav-link py-3 px-0 px-lg-3 rounded" href="pages/profile_page.php"><i style="font-size:3.5rem;" class="fa fa-user-circle" aria-hidden="true"></i></a></li>

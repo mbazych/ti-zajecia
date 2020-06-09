@@ -17,13 +17,13 @@ if (!empty($_POST['email']) && !empty($_POST['pass'])) {
         // $pass = password_hash($pass2,PASSWORD_ARGON2ID); //argon nie dziala
         if (!$res->num_rows) {
             $_SESSION['error'] = "Niepoprawny email lub hasło";
-            header("location: ../login.php");
+            header("location: ../pages/login.php");
             exit();
         }
         $row = $res->fetch_assoc();
         if ($row['password'] != $pass) {
             $_SESSION['error'] = "Niepoprawny email lub hasło";
-            header("location: ../login.php");
+            header("location: ../pages/login.php");
             exit();
         }
 

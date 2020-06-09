@@ -18,7 +18,7 @@ if (!empty($_POST['email']) && !empty($_POST['pass']) && !empty($_POST['city']) 
 
     if ($conn->connect_errno) {
         $_SESSION['error'] = "Błędne połączenie z bazą danych";
-        header("location: ../register.php");
+        header("location: ../pages/register.php");
     } else {
         $name = $_POST['name'];
         $surname = $_POST['surname'];

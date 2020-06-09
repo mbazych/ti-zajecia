@@ -8,6 +8,6 @@
 </script>
 <?
     }else{
-        header('location: ../');
+        header('location: ../index.php');
     }
 ?>

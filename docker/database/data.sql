@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 03 Cze 2020, 20:30
+-- Czas generowania: 09 Cze 2020, 09:08
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET GLOBAL time_zone = "+02:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -42,16 +42,16 @@ INSERT INTO `categories` (`id`, `categorie`, `photo_path_categories`) VALUES
 (1, 'Business', 'business.png'),
 (2, 'Career', 'career.png'),
 (3, 'Health & Wellness', 'health_wellness.png'),
-(4, 'Learning','learning.png'),
+(4, 'Learning', 'learning.png'),
 (5, 'Social', 'social.png'),
 (6, 'Travelling', 'travelling.png'),
 (7, 'Food', 'food.png'),
-(8, 'Sport & Fitness','sport_fitness.png'),
-(9, 'Games','games.png'),
-(10, 'Book Lovers','book_lovers.png'),
-(11, 'Fashion','fashion.png'),
-(12, 'DIY','diy.png'),
-(13, 'Tech','tech.png');
+(8, 'Sport & Fitness', 'sport_fitness.png'),
+(9, 'Games', 'games.png'),
+(10, 'Book Lovers', 'book_lovers.png'),
+(11, 'Fashion', 'fashion.png'),
+(12, 'DIY', 'diy.png'),
+(13, 'Tech', 'tech.png');
 
 -- --------------------------------------------------------
 
@@ -992,10 +992,28 @@ INSERT INTO `city` (`id`, `state_id`, `city`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `events`
+-- Zastąpiona struktura widoku `events`
+-- (Zobacz poniżej rzeczywisty widok)
+--
+CREATE TABLE `events` (
+`id` int(10) unsigned
+,`name` varchar(40)
+,`description` varchar(500)
+,`city_id` int(10) unsigned
+,`address` varchar(40)
+,`date` datetime
+,`photo_path` varchar(100)
+,`categorie_id` int(10) unsigned
+,`host_id` int(10) unsigned
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `events_table`
 --
 
-CREATE TABLE `events` (
+CREATE TABLE `events_table` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL,
   `description` varchar(500) NOT NULL,
@@ -1008,14 +1026,14 @@ CREATE TABLE `events` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `events`
+-- Zrzut danych tabeli `events_table`
 --
 
-INSERT INTO `events` (`id`, `name`, `description`, `city_id`, `address`, `date`, `categorie_id`) VALUES
-(1, 'Programming career', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 853, 'Kutrzeby 10', '2020-09-16 18:00:00', 13),
-(2, 'First job', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 853, 'Garbary 9', '2020-09-16 18:00:00', 2),
-(3, 'First week in Taiwan', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-08-14 20:30:00', 6),
-(4, 'Start earning!', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-10-14 20:30:00', 1);
+INSERT INTO `events_table` (`id`, `name`, `description`, `city_id`, `address`, `date`, `photo_path`, `categorie_id`, `host_id`) VALUES
+(1, 'Programming career', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 853, 'Kutrzeby 10', '2020-09-16 18:00:00', 'default_photo_event.png', 13, 1),
+(2, 'First job', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 853, 'Garbary 9', '2020-09-16 18:00:00', 'default_photo_event.png', 2, 1),
+(3, 'First week in Taiwan', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-08-14 20:30:00', 'default_photo_event.png', 6, 1),
+(4, 'Start earning!', 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 853, 'Wroclawska 12A/2', '2020-10-14 20:30:00', 'default_photo_event.png', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1210,6 +1228,15 @@ INSERT INTO `users_events` (`user_id`, `event_id`, `timestamp`) VALUES
 (6, 3, '2020-06-03 18:23:10'),
 (7, 3, '2020-06-03 18:23:10');
 
+-- --------------------------------------------------------
+
+--
+-- Struktura widoku `events`
+--
+DROP TABLE IF EXISTS `events`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `events`  AS  (select `events_table`.`id` AS `id`,`events_table`.`name` AS `name`,`events_table`.`description` AS `description`,`events_table`.`city_id` AS `city_id`,`events_table`.`address` AS `address`,`events_table`.`date` AS `date`,`events_table`.`photo_path` AS `photo_path`,`events_table`.`categorie_id` AS `categorie_id`,`events_table`.`host_id` AS `host_id` from `events_table` where `events_table`.`date` >= current_timestamp()) ;
+
 --
 -- Indeksy dla zrzutów tabel
 --
@@ -1228,12 +1255,13 @@ ALTER TABLE `city`
   ADD KEY `state_id` (`state_id`);
 
 --
--- Indeksy dla tabeli `events`
+-- Indeksy dla tabeli `events_table`
 --
-ALTER TABLE `events`
+ALTER TABLE `events_table`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_city` (`city_id`),
-  ADD KEY `fk_category` (`categorie_id`);
+  ADD KEY `fk_category` (`categorie_id`),
+  ADD KEY `events_ibfk_3` (`host_id`);
 
 --
 -- Indeksy dla tabeli `events_tags`
@@ -1289,9 +1317,9 @@ ALTER TABLE `city`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1024;
 
 --
--- AUTO_INCREMENT dla tabeli `events`
+-- AUTO_INCREMENT dla tabeli `events_table`
 --
-ALTER TABLE `events`
+ALTER TABLE `events_table`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -1323,9 +1351,9 @@ ALTER TABLE `city`
   ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`);
 
 --
--- Ograniczenia dla tabeli `events`
+-- Ograniczenia dla tabeli `events_table`
 --
-ALTER TABLE `events`
+ALTER TABLE `events_table`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
   ADD CONSTRAINT `events_ibfk_3` FOREIGN KEY (`host_id`) REFERENCES `users` (`id`);
@@ -1334,7 +1362,7 @@ ALTER TABLE `events`
 -- Ograniczenia dla tabeli `events_tags`
 --
 ALTER TABLE `events_tags`
-  ADD CONSTRAINT `events_tags_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  ADD CONSTRAINT `events_tags_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events_table` (`id`),
   ADD CONSTRAINT `events_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
 
 --
@@ -1347,7 +1375,7 @@ ALTER TABLE `users`
 -- Ograniczenia dla tabeli `users_events`
 --
 ALTER TABLE `users_events`
-  ADD CONSTRAINT `users_events_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  ADD CONSTRAINT `users_events_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events_table` (`id`),
   ADD CONSTRAINT `users_events_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 

@@ -29,5 +29,6 @@ services:
       - MYSQL_USER=event
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=docker
+      - TZ=Europe/Berlin
     volumes:
       - ./database/data.sql:/docker-entrypoint-initdb.d/data.sql

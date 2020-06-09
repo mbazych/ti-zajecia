@@ -58,7 +58,7 @@ if (!empty($_POST['email']) && !empty($_POST['pass']) && !empty($_POST['city']) 
         $i = $stmt->execute();
         if ($i) {
             $_SESSION['info'] = "Now you can log in";
-            header("location: ../login.php");
+            header("location: ../pages/login.php");
             exit();
         } else {
 

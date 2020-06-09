@@ -70,7 +70,7 @@
 
                 <div class="container col-lg-12 d-flex justify-content-center" style="margin:3% 0%; padding:0 10%;">
                         <!-- <div class=" "> -->
-                        <form action="./events.php" method="POST" id="searchForm" class="input-group">
+                        <form action="./events.php" method="GET" id="searchForm" class="input-group">
 
                             <?php
                             require_once("./scripts/connect.php");
@@ -110,16 +110,15 @@ City;
         require_once("./scripts/connect.php");
         $sql = "SELECT id,`name`,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description`
         FROM events";
-        if(isset($_POST['button']))
-        {
-            $sql .= " WHERE (`name` LIKE '%" . $_POST['search'] . "%'OR `description` LIKE '%" . $_POST['search'] . "%') ";
-            if ($_POST['category'] != NULL && !empty($_POST['category'])){ $sql .= " AND `categorie_id` = " . $_POST['category'];}
-            if ($_POST['city'] != NULL && !empty($_POST['city'])){ $sql .= " AND `city_id` = " . $_POST['city'];}
-        }
+
+            $sql .= " WHERE (`name` LIKE '%" . $_GET['search'] . "%'OR `description` LIKE '%" . $_GET['search'] . "%') ";
+            if ($_GET['category'] != NULL && !empty($_GET['category'])){ $sql .= " AND `categorie_id` = " . $_GET['category'];}
+            if ($_GET['city'] != NULL && !empty($_GET['city'])){ $sql .= " AND `city_id` = " . $_GET['city'];}
+
         $result = $conn->query($sql);
 
-        if (isset($_POST['search']) and !empty($_POST['search'])) {
-            echo "<h3 class='text-center text'>You searched for ".$_POST['search'].", here are your results:</h3></br>";
+        if (isset($_GET['search']) and !empty($_GET['search'])) {
+            echo "<h3 class='text-center text'>You searched for ".$_GET['search'].", here are your results:</h3></br>";
         }
         ?>
         <div class="container">

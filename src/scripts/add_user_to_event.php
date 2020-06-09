@@ -23,7 +23,7 @@
             $_SESSION['error']="Something went wrong... Try later";
         }
     }else{
-        header('location: ../login.php');
+        header('location: ../pages/login.php');
     }
     
     exit();

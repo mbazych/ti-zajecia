@@ -63,14 +63,18 @@ if ($response->num_rows == 0) {
     <link href="../static/css/styles.css" rel="stylesheet" />
     <link href="../static/css/pageStyle.css" rel="stylesheet" />
     <script>
-        function shareClick() {
-            var dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = window.location.href;
-            dummy.select();
+        function shareClick(){          
+            var $temp = $("<textarea>");
+            $("body").append($temp);
+            $temp.val(window.location.href).select();
             document.execCommand("copy");
-            document.body.removeChild(dummy);
-            document.getElementById('share-btn').innerHTML = "Copied";
+            $temp.remove()
+            $('#share-btn').html("Copied!");
+            setTimeout(function(){
+
+            $('#share-btn').html('<i class="fa fa-share"></i> Share');
+
+            }, 2000);
 
         }
     </script>

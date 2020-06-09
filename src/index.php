@@ -115,8 +115,8 @@
                 <div class="col-lg-8 mx-auto">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
                     <p>Phone: 123123123</p>
-                    <p>Nadbrzeżna 21 </p>
-                    <p>72-320 Trzebiatów</p>
+                    <p>Topolowa 21 </p>
+                    <p>61-816 Poznań</p>
                     <p>NIP: 123123123123</p>
                 </div>
             </div>

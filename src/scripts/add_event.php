@@ -57,7 +57,7 @@ if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']
         $photoname = "default_photo_event.png";
     }
 
-    $sql = "INSERT INTO `events` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
+    $sql = "INSERT INTO `events_table` (`name`, `description`, `city_id`, `address`, `date`, `categorie_id`, `photo_path`, `host_id`)
             VALUES ('" . $name . "', '" . $description . "', " . $city . ", '" . $address . "', '" . $date . "', " . $categorie . ", '" . $photoname . "', " . $host_id . ")";
     $conn->query($sql);
 

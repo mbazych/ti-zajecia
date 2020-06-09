@@ -3,7 +3,8 @@ session_start();
 if (!empty($_POST['name']) && !empty($_POST['city']) && !empty($_POST['address']) && !empty($_POST['categorie']) && !empty($_POST['date']) && !empty($_POST['description'])) {
     require_once './connect.php';
 
-    if ($_POST['date'] <= date("Y-m-d H:i")) {
+
+    if (date("Y-m-d H:i", strtotime($_POST['date'])) <= date("Y-m-d H:i")) {
         $_SESSION['error'] = "Event date must be in the future";
 ?>
         <script>

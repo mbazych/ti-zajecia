@@ -84,13 +84,16 @@
                 $result = $conn->query("SELECT * FROM `categories` ORDER BY id DESC");
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="col-md-6 col-lg-4 mb-5">
+                            <a href=./events.php?category='.$row['id'].'>
                             <div class="card" style="border:none; border-bottom: 1px solid gray; border-top: 1px solid gray;  ">
                                 <img style="background-color:#FFDAC1 ;height:240px; object-fit:cover" class="card-img-top" src="./static/img/' . $row['photo_path_categories'] . '"/>
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         ' . $row['categorie'] . '
                                     </h5>
+                                    
                                 </div>
+                                </a>
                             </div>
                         </div>';
                 } ?>

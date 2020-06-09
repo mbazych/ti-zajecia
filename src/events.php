@@ -108,7 +108,7 @@ City;
     <section>
         <?php
         require_once("./scripts/connect.php");
-        $sql = "SELECT NOW() as curent ,id,`name`,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description`
+        $sql = "SELECT id,`name`,photo_path,`date`,CONCAT(SUBSTRING(`description`,1,50),'...') as `description`
         FROM events";
         if(isset($_POST['button']))
         {
@@ -135,7 +135,7 @@ City;
                 echo "<div class='col-lg-12' style='margin:20% 0; color:red'><h1> No Results <h1></div>";
 
                 while ($row = $result->fetch_assoc()) {
-                    echo $row['curent']." || ".$row['date']."<div class='col col-12 mb-12 xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3' style='margin-bottom:2%'>
+                    echo "<div class='col col-12 mb-12 xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3' style='margin-bottom:2%'>
                                         <div class='card'>
                                             <div class='card-header' style='padding:0'>
                                                 <img class='card-img-top' style='height:150px; object-fit:cover' src='./static/img/{$row['photo_path']}'>

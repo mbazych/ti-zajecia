@@ -1,3 +1,3 @@
-# ti-zajecia
+# Event app
 
-Aby odwiedzić naszą aplikację należy przejść [pod ten adres](http://eventano.mczarczynski.pl)
+Concept of application collect users and events. After creating an account you will be able to create your own events or take part in someone's else event.
